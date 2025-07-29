@@ -1,12 +1,53 @@
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Github, Linkedin, Mail, ChevronDown } from "lucide-react";
+import { Linkedin, Mail, ChevronDown } from "lucide-react";
 import heroBackground from "@/assets/hero-bg.jpg";
 
 export const HeroSection = () => {
   const scrollToAbout = () => {
     document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const particles = document.querySelectorAll('.particle');
+      const mouseX = e.clientX / window.innerWidth;
+      const mouseY = e.clientY / window.innerHeight;
+      
+      particles.forEach((particle, index) => {
+        const element = particle as HTMLElement;
+        const speed = (index % 5 + 1) * 0.5;
+        const x = (mouseX - 0.5) * speed * 30;
+        const y = (mouseY - 0.5) * speed * 30;
+        
+        element.style.transform = `translate(${x}px, ${y}px) scale(${1 + mouseX * 0.3})`;
+        element.style.opacity = `${0.3 + mouseX * 0.5}`;
+      });
+    };
+
+    const handleScroll = () => {
+      const particles = document.querySelectorAll('.particle');
+      const scrollY = window.scrollY;
+      
+      particles.forEach((particle, index) => {
+        const element = particle as HTMLElement;
+        const speed = (index % 3 + 1) * 0.1;
+        const rotation = scrollY * speed * 0.5;
+        const drift = Math.sin(scrollY * 0.01 + index) * 20;
+        
+        element.style.transform += ` rotate(${rotation}deg) translateX(${drift}px)`;
+      });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -18,17 +59,16 @@ export const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background"></div>
       </div>
 
-      {/* Floating particles */}
-      <div className="absolute inset-0">
-        {[...Array(20)].map((_, i) => (
+  {/* Interactive particles */}
+      <div className="absolute inset-0" id="particles-container">
+        {[...Array(50)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-1 h-1 bg-accent rounded-full animate-pulse-glow"
+            className="particle absolute w-1 h-1 bg-accent rounded-full transition-all duration-1000 ease-out"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 3}s`
+              opacity: 0.3 + Math.random() * 0.7,
             }}
           />
         ))}
@@ -90,14 +130,6 @@ export const HeroSection = () => {
             className="text-muted-foreground hover:text-accent transition-smooth"
           >
             <Linkedin className="h-6 w-6" />
-          </a>
-          <a 
-            href="https://github.com" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-accent transition-smooth"
-          >
-            <Github className="h-6 w-6" />
           </a>
         </div>
       </div>

@@ -1,7 +1,8 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, Calendar, Cpu, Droplets, Bot } from "lucide-react";
+import { ExternalLink, Calendar, Cpu, Droplets, Bot, Gamepad2, Wrench } from "lucide-react";
+import { EmbeddedChatAssistant } from "@/components/EmbeddedChatAssistant";
 
 const projects = [
   {
@@ -54,7 +55,7 @@ const projects = [
     description: "Custom LISP and Python scripts for Revamp Engineering to automate electrical schematic workflows. Bridges traditional AutoCAD with modern AutoCAD Electrical systems.",
     tech: ["LISP", "Python", "AutoCAD API", "Excel Automation"],
     category: "Automation",
-    icon: Cpu,
+    icon: Wrench,
     date: "May 2025 - Present",
     features: [
       "Test switch schedule automation",
@@ -63,6 +64,36 @@ const projects = [
       "Excel macro development"
     ],
     status: "Production"
+  },
+  {
+    title: "Custom Mini Hydroponics Tower",
+    description: "3D designed mini hydroponics tower with Arduino Nano processor, custom circuit board, and 3D printed structure. Complete automated growing solution.",
+    tech: ["Arduino Nano", "3D Printing", "Circuit Design", "Hydroponics"],
+    category: "IoT",
+    icon: Cpu,
+    date: "Aug 2023 - Aug 2024",
+    features: [
+      "Custom designed circuit board",
+      "3D printed frame and structure",
+      "Arduino-based automation",
+      "Integrated growing system"
+    ],
+    status: "Completed"
+  },
+  {
+    title: "VR & Game Development Portfolio",
+    description: "Competed in six game design competitions with 78-hour development sprints. Awarded top 50 globally and developed VR experiences for Oculus Quest.",
+    tech: ["Unity", "C#", "VR Development", "Game Design"],
+    category: "Development",
+    icon: Gamepad2,
+    date: "2019 - 2023",
+    features: [
+      "Top 50 global competition awards",
+      "78-hour game jam experiences",
+      "Oculus Quest VR development",
+      "Complete game design lifecycle"
+    ],
+    status: "Completed"
   }
 ];
 
@@ -145,44 +176,39 @@ export const ProjectsSection = () => {
                   ))}
                 </div>
 
-                {/* Action Buttons */}
+                {/* Action Button */}
                 <div className="flex gap-3">
                   <Button 
                     size="sm" 
                     variant="outline"
                     className="border-accent/50 text-accent hover:bg-accent/10 transition-smooth"
+                    onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                   >
                     <ExternalLink className="h-3 w-3 mr-2" />
                     Learn More
                   </Button>
-                  {project.status !== 'Seeking Investment' && (
-                    <Button 
-                      size="sm" 
-                      variant="ghost"
-                      className="text-muted-foreground hover:text-accent transition-smooth"
-                    >
-                      <Github className="h-3 w-3 mr-2" />
-                      Code
-                    </Button>
-                  )}
                 </div>
               </Card>
             );
           })}
         </div>
 
-        {/* Call to Action */}
-        <div className="text-center mt-12">
-          <p className="text-muted-foreground mb-6">
-            Interested in collaborating on innovative projects?
-          </p>
-          <Button 
-            size="lg" 
-            className="bg-gradient-accent hover:opacity-90 transition-smooth glow-accent"
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-          >
-            Let's Work Together
-          </Button>
+        {/* AI Assistant Section */}
+        <div className="text-center mt-16">
+          <div className="bg-gradient-to-r from-card/50 to-card/30 rounded-2xl p-8 border border-accent/20">
+            <div className="max-w-2xl mx-auto">
+              <div className="flex items-center justify-center mb-6">
+                <div className="w-12 h-12 bg-gradient-accent rounded-full flex items-center justify-center mr-4">
+                  <Bot className="h-6 w-6 text-background" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-gradient-accent">Ask Ethan's AI Assistant</h3>
+                  <p className="text-muted-foreground">Get instant answers about experience, projects, and services</p>
+                </div>
+              </div>
+              <EmbeddedChatAssistant />
+            </div>
+          </div>
         </div>
       </div>
     </section>

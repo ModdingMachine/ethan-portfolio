@@ -4,7 +4,7 @@ import { SkillsSection } from "@/components/SkillsSection";
 import { ExperienceSection } from "@/components/ExperienceSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { ContactSection } from "@/components/ContactSection";
-import { ChatAssistant } from "@/components/ChatAssistant";
+import { EmbeddedChatAssistant } from "@/components/EmbeddedChatAssistant";
 
 const Index = () => {
   return (
@@ -15,7 +15,6 @@ const Index = () => {
       <ExperienceSection />
       <ProjectsSection />
       <ContactSection />
-      <ChatAssistant />
     </div>
   );
 };
