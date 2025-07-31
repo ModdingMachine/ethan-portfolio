@@ -3,7 +3,19 @@ export async function sendChatMessage(message: string): Promise<string> {
   const openAIApiKey = import.meta.env.VITE_OPENAI_API_KEY;
   
   if (!openAIApiKey) {
-    throw new Error('OpenAI API key not configured');
+    // Fallback responses when API key is not configured
+    const fallbackResponses = [
+      "I'd be happy to help! Since the AI integration isn't fully configured yet, here are some key things about Ethan:\n\n**Background:** Ethan is an automation engineer and entrepreneur based in Colorado Springs, specializing in AI integration and IoT systems.\n\n**Current Projects:** He's working on HydroQube (smart hydration tracking) and an AI lecture transcription system.\n\n**Skills:** Python, AutoCAD, ESP32, Unity, and various automation tools.\n\nFeel free to reach out to Ethan directly for more detailed conversations!",
+      "Great question! Ethan is currently focused on building innovative IoT solutions and AI-powered automation systems. His latest project, HydroQube, uses ESP32 sensors to track hydration levels in a 3cm cube.\n\n**Key Strengths:**\n- Start-to-finish product development\n- Embedded systems and IoT\n- AI integration and automation\n- Game design and Unity development\n\nFor specific technical questions or collaboration opportunities, Ethan would love to connect directly!",
+      "Ethan is a detail-oriented automation engineer who loves solving complex problems with elegant solutions. He's currently working on several projects including an AI-powered lecture transcription system and smart IoT devices.\n\n**Recent Work:**\n- HydroQube: Smart hydration tracking device\n- Cookbook AI: Recipe generation app\n- Mini Hydroponics Tower: Automated growing system\n\nHis approach emphasizes organization, clarity, and functional decomposition. He's always eager to discuss new opportunities!",
+      "Ethan is an automation engineer and entrepreneur who believes in 'solving problems with products.' He has experience with Python, AutoCAD automation, ESP32 development, and AI integration.\n\n**Current Focus:** Building innovative IoT solutions and AI-powered automation systems. He's particularly interested in projects that combine hardware and software to solve real-world problems.\n\nFor detailed discussions about his work or potential collaborations, Ethan would be happy to connect directly!"
+    ];
+    
+    // Simulate API delay
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    // Return a random fallback response
+    return fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
   }
 
   try {

@@ -89,30 +89,30 @@ export const EmbeddedChatAssistant = () => {
       </div>
 
       {/* Messages */}
-      <div className="h-80 overflow-y-auto p-4 space-y-4">
+      <div className="h-60 md:h-80 overflow-y-auto p-4 space-y-4">
         {messages.map((message) => (
           <div
             key={message.id}
             className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}
           >
             <div
-              className={`flex items-start space-x-2 max-w-[80%] ${
+              className={`flex items-start space-x-2 max-w-[85%] md:max-w-[80%] ${
                 message.isUser ? 'flex-row-reverse space-x-reverse' : ''
               }`}
             >
-              <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 ${
+              <div className={`w-5 h-5 md:w-6 md:h-6 rounded-full flex items-center justify-center flex-shrink-0 ${
                 message.isUser 
                   ? 'bg-accent text-background' 
                   : 'bg-gradient-accent'
               }`}>
                 {message.isUser ? (
-                  <User className="h-3 w-3" />
+                  <User className="h-2.5 w-2.5 md:h-3 md:w-3" />
                 ) : (
-                  <Bot className="h-3 w-3 text-background" />
+                  <Bot className="h-2.5 w-2.5 md:h-3 md:w-3 text-background" />
                 )}
               </div>
               <div
-                className={`rounded-lg p-3 text-sm ${
+                className={`rounded-lg p-2 md:p-3 text-xs md:text-sm ${
                   message.isUser
                     ? 'bg-accent text-background'
                     : 'bg-muted/50 text-foreground text-left'
@@ -126,14 +126,14 @@ export const EmbeddedChatAssistant = () => {
         {isLoading && (
           <div className="flex justify-start">
             <div className="flex items-start space-x-2">
-              <div className="w-6 h-6 rounded-full bg-gradient-accent flex items-center justify-center">
-                <Bot className="h-3 w-3 text-background" />
+              <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-gradient-accent flex items-center justify-center">
+                <Bot className="h-2.5 w-2.5 md:h-3 md:w-3 text-background" />
               </div>
-              <div className="bg-muted/50 rounded-lg p-3 text-sm">
+              <div className="bg-muted/50 rounded-lg p-2 md:p-3 text-xs md:text-sm">
                 <div className="flex space-x-1">
-                  <div className="w-2 h-2 bg-accent rounded-full animate-bounce"></div>
-                  <div className="w-2 h-2 bg-accent rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                  <div className="w-2 h-2 bg-accent rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                  <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-accent rounded-full animate-bounce"></div>
+                  <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-accent rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                  <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-accent rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                 </div>
               </div>
             </div>
@@ -142,23 +142,23 @@ export const EmbeddedChatAssistant = () => {
       </div>
 
       {/* Input */}
-      <div className="p-4 border-t border-accent/20 bg-card/50">
+      <div className="p-3 md:p-4 border-t border-accent/20 bg-card/50">
         <div className="flex space-x-2">
           <Input
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             onKeyPress={handleKeyPress}
             placeholder="Ask about Ethan's experience..."
-            className="flex-1 transition-smooth bg-background/50"
+            className="flex-1 transition-smooth bg-background/50 text-xs md:text-sm"
             disabled={isLoading}
           />
           <Button
             onClick={sendMessage}
             disabled={isLoading || !inputValue.trim()}
             size="sm"
-            className="bg-gradient-accent hover:opacity-90 transition-smooth"
+            className="bg-gradient-accent hover:opacity-90 transition-smooth px-2 md:px-3"
           >
-            <Send className="h-4 w-4" />
+            <Send className="h-3 w-3 md:h-4 md:w-4" />
           </Button>
         </div>
       </div>

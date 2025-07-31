@@ -7,7 +7,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
   
   return {
-    base: "/", // Set base to / for custom domain
+    base: env.VITE_BASE_PATH || "/", // Set base dynamically
     server: {
       host: env.VITE_DEV_SERVER_HOST || "localhost",
       port: parseInt(env.VITE_DEV_SERVER_PORT) || 3000,

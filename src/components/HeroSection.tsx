@@ -1,51 +1,91 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Linkedin, Mail, ChevronDown } from "lucide-react";
 import heroBackground from "@/assets/hero-bg.jpg";
 
 export const HeroSection = () => {
+  const isMobile = useRef(false);
+  const animationFrameRef = useRef<number>();
+
   const scrollToAbout = () => {
     document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   useEffect(() => {
+    // Detect mobile device
+    isMobile.current = window.innerWidth < 768;
+    
+    // Only add expensive animations on desktop
+    if (isMobile.current) return;
+
+    let lastMouseX = 0;
+    let lastMouseY = 0;
+    let lastScrollY = 0;
+
     const handleMouseMove = (e: MouseEvent) => {
+      // Throttle mouse events
+      if (Math.abs(e.clientX - lastMouseX) < 5 && Math.abs(e.clientY - lastMouseY) < 5) return;
+      lastMouseX = e.clientX;
+      lastMouseY = e.clientY;
+
       const particles = document.querySelectorAll('.particle');
       const mouseX = e.clientX / window.innerWidth;
       const mouseY = e.clientY / window.innerHeight;
       
       particles.forEach((particle, index) => {
         const element = particle as HTMLElement;
-        const speed = (index % 5 + 1) * 0.05;
-        const x = (mouseX - 0.5) * speed * 300;
-        const y = (mouseY - 0.5) * speed * 300;
+        const speed = (index % 5 + 1) * 0.03; // Reduced speed
+        const x = (mouseX - 0.5) * speed * 200; // Reduced movement
+        const y = (mouseY - 0.5) * speed * 200;
         
-        element.style.transform = `translate(${x}px, ${y}px) scale(${1 + mouseX * 0.3})`;
-        element.style.opacity = `${0.3 + mouseX * 0.5}`;
+        element.style.transform = `translate(${x}px, ${y}px) scale(${1 + mouseX * 0.2})`;
+        element.style.opacity = `${0.3 + mouseX * 0.3}`;
       });
     };
 
     const handleScroll = () => {
-      const particles = document.querySelectorAll('.particle');
       const scrollY = window.scrollY;
+      // Throttle scroll events
+      if (Math.abs(scrollY - lastScrollY) < 10) return;
+      lastScrollY = scrollY;
+
+      const particles = document.querySelectorAll('.particle');
       
       particles.forEach((particle, index) => {
         const element = particle as HTMLElement;
-        const speed = (index % 3 + 1) * 0.001;
-        const rotation = scrollY * speed * 0.5;
-        const drift = Math.sin(scrollY * 0.01 + index) * 2;
+        const speed = (index % 3 + 1) * 0.0005; // Reduced speed
+        const rotation = scrollY * speed * 0.3;
+        const drift = Math.sin(scrollY * 0.005 + index) * 1; // Reduced drift
         
         element.style.transform += ` rotate(${rotation}deg) translateX(${drift}px)`;
       });
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('scroll', handleScroll);
+    // Use requestAnimationFrame for better performance
+    const throttledMouseMove = (e: MouseEvent) => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+      animationFrameRef.current = requestAnimationFrame(() => handleMouseMove(e));
+    };
+
+    const throttledScroll = () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+      animationFrameRef.current = requestAnimationFrame(handleScroll);
+    };
+
+    window.addEventListener('mousemove', throttledMouseMove, { passive: true });
+    window.addEventListener('scroll', throttledScroll, { passive: true });
     
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('mousemove', throttledMouseMove);
+      window.removeEventListener('scroll', throttledScroll);
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
     };
   }, []);
 
@@ -59,9 +99,9 @@ export const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background"></div>
       </div>
 
-  {/* Interactive particles */}
+      {/* Interactive particles - reduced count on mobile */}
       <div className="absolute inset-0" id="particles-container">
-        {[...Array(50)].map((_, i) => (
+        {[...Array(isMobile.current ? 15 : 30)].map((_, i) => (
           <div
             key={i}
             className="particle absolute w-1 h-1 bg-accent rounded-full transition-all duration-1000 ease-out"
@@ -82,24 +122,24 @@ export const HeroSection = () => {
         </Badge>
 
         {/* Main Heading */}
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+        <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-6 leading-tight">
           <span className="text-gradient-accent">Ethan Orr</span>
         </h1>
         
-        <h2 className="text-2xl md:text-3xl font-light mb-8 text-muted-foreground">
+        <h2 className="text-xl md:text-2xl lg:text-3xl font-light mb-8 text-muted-foreground">
           Entrepreneur & Automation Engineer
         </h2>
 
         {/* Pitch */}
-        <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-base md:text-lg lg:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
           Bridging the gap between innovative AI solutions and real-world automation. 
           Specializing in intelligent systems that transform workflows and drive business growth.
         </p>
 
         {/* Tech Stack Pills */}
-        <div className="flex flex-wrap justify-center gap-3 mb-10">
+        <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-10">
           {['AI Integration', 'API Development', 'Automation', 'IoT Systems', 'Python', 'AutoCAD'].map((tech) => (
-            <Badge key={tech} variant="secondary" className="px-4 py-2 text-sm bg-muted/50 hover:bg-accent/20 transition-smooth">
+            <Badge key={tech} variant="secondary" className="px-3 md:px-4 py-1 md:py-2 text-xs md:text-sm bg-muted/50 hover:bg-accent/20 transition-smooth">
               {tech}
             </Badge>
           ))}
