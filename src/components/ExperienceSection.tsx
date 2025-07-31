@@ -156,29 +156,6 @@ export const ExperienceSection = () => {
             ))}
           </div>
         </div>
-
-        {/* Download Resume CTA */}
-        <div className="text-center mt-16">
-          <Card className="p-8 card-glow bg-gradient-to-r from-card to-accent/5">
-            <h3 className="text-2xl font-semibold mb-4">
-              Want to Learn More?
-            </h3>
-            <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Download my full resume to see additional experience, certifications, and detailed project information.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="px-6 py-3 bg-gradient-accent text-background rounded-lg font-semibold hover:opacity-90 transition-smooth glow-accent">
-                Download Resume
-              </button>
-              <button 
-                className="px-6 py-3 border border-accent text-accent rounded-lg font-semibold hover:bg-accent/10 transition-smooth"
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                Get in Touch
-              </button>
-            </div>
-          </Card>
-        </div>
       </div>
     </section>
   );

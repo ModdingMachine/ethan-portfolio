@@ -17,9 +17,9 @@ export const HeroSection = () => {
       
       particles.forEach((particle, index) => {
         const element = particle as HTMLElement;
-        const speed = (index % 5 + 1) * 0.5;
-        const x = (mouseX - 0.5) * speed * 30;
-        const y = (mouseY - 0.5) * speed * 30;
+        const speed = (index % 5 + 1) * 0.05;
+        const x = (mouseX - 0.5) * speed * 300;
+        const y = (mouseY - 0.5) * speed * 300;
         
         element.style.transform = `translate(${x}px, ${y}px) scale(${1 + mouseX * 0.3})`;
         element.style.opacity = `${0.3 + mouseX * 0.5}`;
@@ -32,9 +32,9 @@ export const HeroSection = () => {
       
       particles.forEach((particle, index) => {
         const element = particle as HTMLElement;
-        const speed = (index % 3 + 1) * 0.1;
+        const speed = (index % 3 + 1) * 0.001;
         const rotation = scrollY * speed * 0.5;
-        const drift = Math.sin(scrollY * 0.01 + index) * 20;
+        const drift = Math.sin(scrollY * 0.01 + index) * 2;
         
         element.style.transform += ` rotate(${rotation}deg) translateX(${drift}px)`;
       });

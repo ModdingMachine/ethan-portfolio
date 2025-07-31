@@ -15,6 +15,11 @@ const Index = () => {
       <ExperienceSection />
       <ProjectsSection />
       <ContactSection />
+
+      {/* AI Disclaimer */}
+      <footer className="w-full py-4 text-center text-xs text-muted-foreground">
+        <p>This website was built with the assistance of an AI.</p>
+      </footer>
     </div>
   );
 };

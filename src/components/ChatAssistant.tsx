@@ -1,11 +1,12 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { MessageCircle, Send, Bot, User, X, Minimize2 } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/components/ui/use-toast";
+import { sendChatMessage } from "@/lib/chat";
+import { parseMarkdown } from "@/lib/markdown";
 
 interface Message {
   id: string;
@@ -20,23 +21,14 @@ export const ChatAssistant = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: "Hi! I'm Ethan's AI assistant. I can help answer questions about his background, experience, and services. What would you like to know?",
+      text: "Hi! I'm Ethan in AI form... I can help answer questions about his background, experience, and services. What would you like to know?",
       isUser: false,
       timestamp: new Date()
     }
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
 
   const sendMessage = async () => {
     if (!inputValue.trim() || isLoading) return;
@@ -53,15 +45,11 @@ export const ChatAssistant = () => {
     setIsLoading(true);
 
     try {
-      const { data, error } = await supabase.functions.invoke('chat-assistant', {
-        body: { message: inputValue }
-      });
-
-      if (error) throw error;
+      const response = await sendChatMessage(inputValue);
 
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: data.response,
+        text: response,
         isUser: false,
         timestamp: new Date()
       };
@@ -164,10 +152,10 @@ export const ChatAssistant = () => {
                     className={`rounded-lg p-3 text-sm ${
                       message.isUser
                         ? 'bg-accent text-background'
-                        : 'bg-muted text-foreground'
+                        : 'bg-muted text-foreground text-left'
                     }`}
                   >
-                    {message.text}
+                    {message.isUser ? message.text : parseMarkdown(message.text)}
                   </div>
                 </div>
               </div>
@@ -188,7 +176,6 @@ export const ChatAssistant = () => {
                 </div>
               </div>
             )}
-            <div ref={messagesEndRef} />
           </div>
 
           {/* Input */}

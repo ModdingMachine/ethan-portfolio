@@ -82,8 +82,8 @@ export const AboutSection = () => {
                 </div>
                 <div className="mt-3">
                   <p className="text-sm text-muted-foreground">
-                    Chancellor's Leadership Class • Advanced Coursework in Calculus III, 
-                    Logic Circuits II, and Physics II
+                    Advanced Coursework in Differential Equations Laplace Transforms, 
+                    Circuits I, and Physics III
                   </p>
                 </div>
               </div>
