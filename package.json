@@ -4,8 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "dev": "npx vite",
+    "build": "npx vite build",
+    "build:dev": "npx vite build --mode development",
+    "lint": "npx eslint .",
+    "preview": "npx vite preview",
+    "setup": "node setup.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
