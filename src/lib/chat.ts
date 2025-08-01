@@ -67,6 +67,11 @@ export async function sendChatMessage(
       }
     ];
     
+    // Debug logging for conversation history
+    console.log('Conversation history length:', conversationHistory.length);
+    console.log('Total messages being sent:', messages.length);
+    console.log('Messages being sent to API:', messages);
+    
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {

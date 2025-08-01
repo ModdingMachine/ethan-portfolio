@@ -51,8 +51,14 @@ export const ChatAssistant = () => {
     setIsLoading(true);
 
     try {
-      // Send message with conversation history
-      const response = await sendChatMessage(inputValue, conversationHistory);
+      // Update conversation history BEFORE making the API call
+      const updatedHistory = [
+        ...conversationHistory,
+        { role: 'user' as const, content: inputValue }
+      ];
+      
+      // Send message with updated conversation history
+      const response = await sendChatMessage(inputValue, updatedHistory);
 
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
@@ -63,7 +69,7 @@ export const ChatAssistant = () => {
 
       setMessages(prev => [...prev, assistantMessage]);
       
-      // Update conversation history for future requests
+      // Update conversation history with the assistant's response
       setConversationHistory(prev => [
         ...prev,
         { role: 'user', content: inputValue },
