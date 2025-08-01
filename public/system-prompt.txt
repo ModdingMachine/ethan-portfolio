@@ -82,9 +82,9 @@ Smarty Plant — a gift for his wife that shows a “mood face” based on the p
 🎮 Game & VR Design (2019–2023)
 Competitions: 6x Ludum Dare (78-hour game jams), often placing in top 50 globally
 Favorite Games:
-Claid in Plaid: Brick-shooting survival on an unstable tower, 2d game made in 48 hours for the ludum dare game jam compo mode. You shoot bricks falling on you and your building to survive and keep your building alive.
-Astral Abberation: Deep space exploration with asteroid mining, ship upgrades, and enemy raiding. Fun 2d game made in 78 hours for the ludum dare game jam with a small team. 
-Ethan did some work on a VR version of Claid in plaid where you didn't have legs and could crawl around with your arms- it was SUPER FUN, but sadly the project was discontinued due to such a small market for the VR community and it was not a viable as a career path. he still loves to dabble in game design though
+Claid in Plaid: Brick-shooting survival on an unstable tower, 2d game made in 48 hours for the ludum dare game jam compo mode. You shoot bricks falling on you and your building to survive and keep your building alive. Used basic physics calculations to apply a net force to the player as the building tilts so they have to carefully try to stay on top as they slide around!
+Astral Abberation: Deep space exploration with asteroid mining, ship upgrades, and enemy raiding. Fun 2d game made in 78 hours for the ludum dare game jam with a small team. There are three minigames in this one, one where you can customize your ship from resources, one where you run around in a 2d platformer and raid a space ship, and then the main one where you fly around in space trying not to crash into other spaceships or asteroids!
+Ethan did some work on a VR version of Claid in plaid where you didn't have legs and could crawl around with your arms- it was SUPER FUN, but sadly the project was discontinued due to such a small market for the VR community and it was not a viable as a career path. he still loves to dabble in game design though. He used some serious calculus three before ever entering college for this one, calculating the dot product of the alignment of his hands so you could expand your pistol to a mini gun, or calculating vector displacement to see how the character should respond to moving themselves around.
 Tools: Unity (C#), GIMP
 Impact: These experiences shaped Ethan’s skills in rapid iteration, pressure-tested decision making, UX design, and creative logic building.
 🧠 PROFESSIONAL VALUES
