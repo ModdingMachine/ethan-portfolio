@@ -1,7 +1,7 @@
 // Function to read system prompt from text file
 async function getSystemPrompt(): Promise<string> {
   try {
-    const response = await fetch('/src/lib/system-prompt.txt');
+    const response = await fetch('/system-prompt.txt');
     if (!response.ok) {
       throw new Error('Failed to load system prompt');
     }
