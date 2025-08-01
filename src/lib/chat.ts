@@ -10,7 +10,6 @@ export async function sendChatMessage(message: string): Promise<string> {
     envKeys: Object.keys(import.meta.env).filter(key => key.includes('OPENAI'))
   });
   
-  
   if (!openAIApiKey) {
     // Fallback responses when API key is not configured
     const fallbackResponses = [
