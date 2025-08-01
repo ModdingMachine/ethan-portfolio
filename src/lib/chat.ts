@@ -13,8 +13,17 @@ async function getSystemPrompt(): Promise<string> {
   }
 }
 
+// Interface for conversation messages
+export interface ConversationMessage {
+  role: 'user' | 'assistant';
+  content: string;
+}
+
 // Local chat function to replace Supabase
-export async function sendChatMessage(message: string): Promise<string> {
+export async function sendChatMessage(
+  message: string, 
+  conversationHistory: ConversationMessage[] = []
+): Promise<string> {
   const openAIApiKey = import.meta.env.VITE_OPENAI_API_KEY;
   
   // Debug logging
@@ -45,6 +54,19 @@ export async function sendChatMessage(message: string): Promise<string> {
     // Get system prompt from text file
     const systemPrompt = await getSystemPrompt();
     
+    // Build messages array with system prompt, conversation history, and current message
+    const messages = [
+      { 
+        role: 'system' as const, 
+        content: systemPrompt
+      },
+      ...conversationHistory,
+      { 
+        role: 'user' as const, 
+        content: message 
+      }
+    ];
+    
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -53,13 +75,7 @@ export async function sendChatMessage(message: string): Promise<string> {
       },
       body: JSON.stringify({
         model: 'gpt-4.1-nano',
-        messages: [
-          { 
-            role: 'system', 
-            content: systemPrompt
-          },
-          { role: 'user', content: message }
-        ],
+        messages,
         max_tokens: 500,
         temperature: 0.7,
       }),

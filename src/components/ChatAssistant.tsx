@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { MessageCircle, Send, Bot, User, X, Minimize2 } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
-import { sendChatMessage } from "@/lib/chat";
+import { sendChatMessage, ConversationMessage } from "@/lib/chat";
 import { parseMarkdown } from "@/lib/markdown";
 
 interface Message {
@@ -24,6 +24,12 @@ export const ChatAssistant = () => {
       text: "Hi! I'm Ethan in AI form... I can help answer questions about his background, experience, and services. What would you like to know?",
       isUser: false,
       timestamp: new Date()
+    }
+  ]);
+  const [conversationHistory, setConversationHistory] = useState<ConversationMessage[]>([
+    {
+      role: 'assistant',
+      content: "Hi! I'm Ethan in AI form... I can help answer questions about his background, experience, and services. What would you like to know?"
     }
   ]);
   const [inputValue, setInputValue] = useState('');
@@ -45,7 +51,8 @@ export const ChatAssistant = () => {
     setIsLoading(true);
 
     try {
-      const response = await sendChatMessage(inputValue);
+      // Send message with conversation history
+      const response = await sendChatMessage(inputValue, conversationHistory);
 
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
@@ -55,6 +62,13 @@ export const ChatAssistant = () => {
       };
 
       setMessages(prev => [...prev, assistantMessage]);
+      
+      // Update conversation history for future requests
+      setConversationHistory(prev => [
+        ...prev,
+        { role: 'user', content: inputValue },
+        { role: 'assistant', content: response }
+      ]);
     } catch (error) {
       console.error('Error sending message:', error);
       toast({
