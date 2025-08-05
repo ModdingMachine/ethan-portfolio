@@ -205,7 +205,6 @@ export const ContactSection = () => {
                       </p>
                     )}
                   </div>
-                  
                   <div>
                     <Input
                       name="email"
