@@ -6,6 +6,8 @@ A modern, responsive portfolio website built with React, TypeScript, and Vite, f
 
 - **Modern UI/UX**: Built with React, TypeScript, and Tailwind CSS
 - **AI Chat Assistant**: Powered by OpenAI GPT-4o-mini
+- **Contact Form**: Integrated email system with EmailJS/SendGrid
+- **Form Validation**: Real-time validation with spam protection
 - **Responsive Design**: Works seamlessly on desktop, tablet, and mobile
 - **Real-time Chat**: Interactive AI assistant for portfolio inquiries
 - **Professional Sections**: Hero, About, Skills, Experience, Projects, and Contact
@@ -15,6 +17,7 @@ A modern, responsive portfolio website built with React, TypeScript, and Vite, f
 - **Frontend**: React 18, TypeScript, Vite
 - **Styling**: Tailwind CSS, shadcn/ui components
 - **AI**: OpenAI GPT-4o-mini (direct API integration)
+- **Email**: EmailJS/SendGrid integration
 - **Routing**: React Router DOM
 - **State Management**: TanStack Query
 - **Forms**: React Hook Form with Zod validation
@@ -57,12 +60,19 @@ cp env.example .env.local
 
 2. Edit `.env.local` and add your configuration:
 ```env
-# Supabase Configuration
-VITE_SUPABASE_URL=your_supabase_url
-VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
-
 # OpenAI API Key (required for chat assistant)
 VITE_OPENAI_API_KEY=your_openai_api_key
+
+# Email Configuration (choose one service)
+# EmailJS (Recommended for simplicity)
+VITE_EMAILJS_SERVICE_ID=your_service_id_here
+VITE_EMAILJS_TEMPLATE_ID=your_template_id_here
+VITE_EMAILJS_USER_ID=your_user_id_here
+
+# OR SendGrid (Alternative)
+# VITE_SENDGRID_API_KEY=your_api_key_here
+# VITE_SENDGRID_FROM_EMAIL=your-verified-email@domain.com
+# VITE_SENDGRID_TO_EMAIL=ethan@example.com
 
 # Development Server Configuration
 VITE_DEV_SERVER_PORT=3000
@@ -76,7 +86,25 @@ VITE_DEV_SERVER_HOST=localhost
 2. Create a new API key
 3. Add it to your `.env.local` file
 
+#### Email Service Setup
+For the contact form to work, you need to set up either EmailJS or SendGrid:
+
+**EmailJS (Recommended)**:
+1. Go to [EmailJS](https://www.emailjs.com/) and create a free account
+2. Set up an email service (Gmail, Outlook, etc.)
+3. Create an email template
+4. Add your EmailJS credentials to `.env.local`
+
+**SendGrid (Alternative)**:
+1. Go to [SendGrid](https://sendgrid.com/) and create an account
+2. Get an API key and verify your sender email
+3. Add your SendGrid credentials to `.env.local`
+
+**Note**: If no email service is configured, the form will show a simulation message.
+
 **Note**: The app now uses direct OpenAI API integration, so no backend setup is required.
+
+**📧 Email Setup**: For detailed email configuration instructions, see [EMAIL_SETUP.md](./EMAIL_SETUP.md)
 
 ### 5. Start Development Server
 
@@ -162,6 +190,12 @@ The app can be deployed to any static hosting platform that supports React appli
 | Variable | Description | Required |
 |----------|-------------|----------|
 | `VITE_OPENAI_API_KEY` | OpenAI API key | Yes (for chat) |
+| `VITE_EMAILJS_SERVICE_ID` | EmailJS service ID | No (for contact form) |
+| `VITE_EMAILJS_TEMPLATE_ID` | EmailJS template ID | No (for contact form) |
+| `VITE_EMAILJS_USER_ID` | EmailJS user ID | No (for contact form) |
+| `VITE_SENDGRID_API_KEY` | SendGrid API key | No (alternative to EmailJS) |
+| `VITE_SENDGRID_FROM_EMAIL` | SendGrid sender email | No (with SendGrid) |
+| `VITE_SENDGRID_TO_EMAIL` | SendGrid recipient email | No (with SendGrid) |
 | `VITE_DEV_SERVER_PORT` | Development server port | No (default: 3000) |
 | `VITE_DEV_SERVER_HOST` | Development server host | No (default: localhost) |
 
@@ -183,8 +217,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 1. **Port already in use**: Change the port in `.env.local` or kill the process using the port
 2. **API key errors**: Ensure your OpenAI API key is valid and has sufficient credits
-3. **Build errors**: Clear `node_modules` and reinstall dependencies
-4. **Chat not working**: Check that your OpenAI API key is set correctly
+3. **Email not sending**: Check your EmailJS/SendGrid configuration
+4. **Build errors**: Clear `node_modules` and reinstall dependencies
+5. **Chat not working**: Check that your OpenAI API key is set correctly
+6. **Contact form validation errors**: Ensure all required fields are filled correctly
 
 ### Getting Help
 

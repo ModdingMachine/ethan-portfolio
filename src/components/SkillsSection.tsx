@@ -23,7 +23,7 @@ const skillCategories = [
   {
     title: "Programming",
     icon: Code,
-    skills: ["Python", "JavaScript", "TypeScript", "React", "Node.js", "LISP"],
+    skills: ["Unity3D", "JavaScript", "C#", "React", "Python", "AutoLISP"],
     color: "text-blue-400"
   },
   {
@@ -47,18 +47,18 @@ const skillCategories = [
   {
     title: "Tools & Platforms",
     icon: Wrench,
-    skills: ["Cursor AI", "Supabase", "Excel Macros", "Android SDK", "Version Control"],
+    skills: ["Cursor AI", "Github", "Excel Macros", "Android SDK", "Version Control"],
     color: "text-pink-400"
   }
 ];
 
 const coreCompetencies = [
-  { name: "AI Integration", level: 95 },
-  { name: "Automation", level: 90 },
-  { name: "Python Development", level: 88 },
-  { name: "Circuit Design", level: 85 },
-  { name: "API Development", level: 82 },
-  { name: "Project Management", level: 80 }
+  { name: "Programming", level: 97 },
+  { name: "Learning", level: 95 },
+  { name: "Automation", level: 92 },
+  { name: "AI Integration", level: 90 },
+  { name: "Circuit Design", level: 88 },
+  { name: "Project Management", level: 85 }
 ];
 
 export const SkillsSection = () => {

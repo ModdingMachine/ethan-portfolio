@@ -19,6 +19,7 @@ const Index = () => {
       {/* AI Disclaimer */}
       <footer className="w-full py-4 text-center text-xs text-muted-foreground">
         <p>This website was built with the assistance of an AI.</p>
+        <p>Copyright © 2025</p>
       </footer>
     </div>
   );

@@ -7,6 +7,9 @@ import heroBackground from "@/assets/hero-bg.jpg";
 export const HeroSection = () => {
   const isMobile = useRef(false);
   const animationFrameRef = useRef<number>();
+  const animationIdRef = useRef<number>();
+  const mousePosition = useRef({ x: 0.5, y: 0.5 });
+  const scrollPosition = useRef(0);
 
   const scrollToAbout = () => {
     document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
@@ -29,19 +32,9 @@ export const HeroSection = () => {
       lastMouseX = e.clientX;
       lastMouseY = e.clientY;
 
-      const particles = document.querySelectorAll('.particle');
-      const mouseX = e.clientX / window.innerWidth;
-      const mouseY = e.clientY / window.innerHeight;
-      
-      particles.forEach((particle, index) => {
-        const element = particle as HTMLElement;
-        const speed = (index % 5 + 1) * 0.03; // Reduced speed
-        const x = (mouseX - 0.5) * speed * 200; // Reduced movement
-        const y = (mouseY - 0.5) * speed * 200;
-        
-        element.style.transform = `translate(${x}px, ${y}px) scale(${1 + mouseX * 0.2})`;
-        element.style.opacity = `${0.3 + mouseX * 0.3}`;
-      });
+      // Update mouse position for continuous animation
+      mousePosition.current.x = e.clientX / window.innerWidth;
+      mousePosition.current.y = e.clientY / window.innerHeight;
     };
 
     const handleScroll = () => {
@@ -49,17 +42,50 @@ export const HeroSection = () => {
       // Throttle scroll events
       if (Math.abs(scrollY - lastScrollY) < 10) return;
       lastScrollY = scrollY;
+      
+      // Update scroll position for continuous animation
+      scrollPosition.current = scrollY;
+    };
 
+    // Continuous animation loop
+    const animateParticles = () => {
       const particles = document.querySelectorAll('.particle');
+      const time = Date.now() * 0.001; // Time in seconds
       
       particles.forEach((particle, index) => {
         const element = particle as HTMLElement;
-        const speed = (index % 3 + 1) * 0.0005; // Reduced speed
-        const rotation = scrollY * speed * 0.3;
-        const drift = Math.sin(scrollY * 0.005 + index) * 1; // Reduced drift
+        const speed = (index % 5 + 1) * 0.02;
+        const phase = index * 0.5; // Different phase for each particle
         
-        element.style.transform += ` rotate(${rotation}deg) translateX(${drift}px)`;
+        // Base movement over time (slow drift)
+        const baseX = Math.sin(time * 0.5 + phase) * 50;
+        const baseY = Math.cos(time * 0.3 + phase) * 30;
+        
+        // Mouse interaction
+        const mouseX = (mousePosition.current.x - 0.5) * speed * 150;
+        const mouseY = (mousePosition.current.y - 0.5) * speed * 150;
+        
+        // Scroll interaction
+        const scrollInfluence = Math.sin(scrollPosition.current * 0.005 + phase) * 20;
+        const scrollRotation = scrollPosition.current * 0.0001 * (index % 3 + 1);
+        
+        // Combine all movements
+        const totalX = baseX + mouseX + scrollInfluence;
+        const totalY = baseY + mouseY + scrollInfluence;
+        
+        // Apply transform
+        element.style.transform = `translate(${totalX}px, ${totalY}px) rotate(${scrollRotation}deg) scale(${1 + mousePosition.current.x * 0.1})`;
+        
+        // Dynamic opacity based on mouse proximity
+        const distanceFromMouse = Math.sqrt(
+          Math.pow(mousePosition.current.x - 0.5, 2) + 
+          Math.pow(mousePosition.current.y - 0.5, 2)
+        );
+        const opacity = 0.2 + (1 - distanceFromMouse) * 0.4 + Math.sin(time + phase) * 0.1;
+        element.style.opacity = Math.max(0.1, Math.min(0.8, opacity)).toString();
       });
+      
+      animationIdRef.current = requestAnimationFrame(animateParticles);
     };
 
     // Use requestAnimationFrame for better performance
@@ -80,11 +106,17 @@ export const HeroSection = () => {
     window.addEventListener('mousemove', throttledMouseMove, { passive: true });
     window.addEventListener('scroll', throttledScroll, { passive: true });
     
+    // Start the continuous animation
+    animateParticles();
+    
     return () => {
       window.removeEventListener('mousemove', throttledMouseMove);
       window.removeEventListener('scroll', throttledScroll);
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
+      }
+      if (animationIdRef.current) {
+        cancelAnimationFrame(animationIdRef.current);
       }
     };
   }, []);
@@ -161,17 +193,6 @@ export const HeroSection = () => {
           </Button>
         </div>
 
-        {/* Social Links */}
-        <div className="flex justify-center space-x-6">
-          <a 
-            href="https://www.linkedin.com/in/ethankorr/" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-accent transition-smooth"
-          >
-            <Linkedin className="h-6 w-6" />
-          </a>
-        </div>
       </div>
 
       {/* Scroll Indicator */}

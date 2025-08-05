@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/components/ui/use-toast";
+import { sendContactEmail, validateContactForm, type ContactFormData } from "@/lib/email";
 import { 
   Mail, 
   Calendar, 
@@ -17,35 +18,68 @@ import {
 } from "lucide-react";
 
 export const ContactSection = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
     message: ''
   });
+  const [errors, setErrors] = useState<string[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Clear previous errors
+    setErrors([]);
+    
+    // Validate form before submission
+    const validation = validateContactForm(formData);
+    if (!validation.isValid) {
+      setErrors(validation.errors);
+      toast({
+        title: "Validation Error",
+        description: validation.errors.join(', '),
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    setIsSubmitted(true);
-    setIsSubmitting(false);
-    
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for reaching out. Ethan will get back to you soon.",
-    });
+    try {
+      const result = await sendContactEmail(formData);
+      
+      if (result.success) {
+        setIsSubmitted(true);
+        toast({
+          title: "Message Sent!",
+          description: "Thank you for reaching out. Ethan will get back to you soon.",
+        });
 
-    // Reset form after success animation
-    setTimeout(() => {
-      setFormData({ name: '', email: '', message: '' });
-      setIsSubmitted(false);
-    }, 3000);
+        // Reset form after success animation
+        setTimeout(() => {
+          setFormData({ name: '', email: '', message: '' });
+          setIsSubmitted(false);
+        }, 3000);
+      } else {
+        toast({
+          title: "Error",
+          description: result.message || "Failed to send message. Please try again.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      toast({
+        title: "Error",
+        description: "An unexpected error occurred. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -53,6 +87,11 @@ export const ContactSection = () => {
       ...formData,
       [e.target.name]: e.target.value
     });
+    
+    // Clear errors when user starts typing
+    if (errors.length > 0) {
+      setErrors([]);
+    }
   };
 
   const openCalendly = () => {
@@ -92,7 +131,7 @@ export const ContactSection = () => {
                 <div className="flex items-center space-x-3">
                   <Mail className="h-5 w-5 text-accent" />
                   <a 
-                    href="mailto:ethan@example.com" 
+                    href="mailto:coder930@gmail.com" 
                     className="hover:text-accent transition-smooth"
                   >
                     ethan@example.com
@@ -112,15 +151,6 @@ export const ContactSection = () => {
                 </div>
               </div>
 
-              <div className="mt-6 pt-6 border-t border-border">
-                <h4 className="font-semibold mb-3">Services Available</h4>
-                <div className="flex flex-wrap gap-2">
-                  <Badge className="bg-accent/20 text-accent border-accent/30">AI Automation</Badge>
-                  <Badge className="bg-accent/20 text-accent border-accent/30">Custom Development</Badge>
-                  <Badge className="bg-accent/20 text-accent border-accent/30">IoT Solutions</Badge>
-                  <Badge className="bg-accent/20 text-accent border-accent/30">Consulting</Badge>
-                </div>
-              </div>
             </Card>
 
             {/* Calendly Integration */}
@@ -165,8 +195,15 @@ export const ContactSection = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="transition-smooth focus:ring-2 focus:ring-accent"
+                      className={`transition-smooth focus:ring-2 focus:ring-accent ${
+                        errors.some(e => e.includes('Name')) ? 'border-red-500 focus:ring-red-500' : ''
+                      }`}
                     />
+                    {errors.some(e => e.includes('Name')) && (
+                      <p className="text-red-500 text-sm mt-1">
+                        {errors.find(e => e.includes('Name'))}
+                      </p>
+                    )}
                   </div>
                   
                   <div>
@@ -177,8 +214,15 @@ export const ContactSection = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="transition-smooth focus:ring-2 focus:ring-accent"
+                      className={`transition-smooth focus:ring-2 focus:ring-accent ${
+                        errors.some(e => e.includes('Email')) ? 'border-red-500 focus:ring-red-500' : ''
+                      }`}
                     />
+                    {errors.some(e => e.includes('Email')) && (
+                      <p className="text-red-500 text-sm mt-1">
+                        {errors.find(e => e.includes('Email'))}
+                      </p>
+                    )}
                   </div>
                   
                   <div>
@@ -189,8 +233,15 @@ export const ContactSection = () => {
                       onChange={handleChange}
                       required
                       rows={5}
-                      className="transition-smooth focus:ring-2 focus:ring-accent resize-none"
+                      className={`transition-smooth focus:ring-2 focus:ring-accent resize-none ${
+                        errors.some(e => e.includes('Message')) ? 'border-red-500 focus:ring-red-500' : ''
+                      }`}
                     />
+                    {errors.some(e => e.includes('Message')) && (
+                      <p className="text-red-500 text-sm mt-1">
+                        {errors.find(e => e.includes('Message'))}
+                      </p>
+                    )}
                   </div>
                 </div>
 

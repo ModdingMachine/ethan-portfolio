@@ -4,49 +4,49 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Ethan Orr Portfolio Design System - Dark Blue Tech Aesthetic */
+/* Ethan Orr Portfolio Design System - Light & Vibrant Aesthetic */
 
 @layer base {
   :root {
-    /* Dark blue tech palette */
-    --background: 220 30% 5%;
-    --foreground: 210 20% 95%;
+    /* Light, vibrant palette (slightly darkened) */
+    --background: 45 30% 100%;
+    --foreground: 25 20% 13%;
 
-    --card: 220 25% 8%;
-    --card-foreground: 210 20% 95%;
+    --card: 45 25% 96%;
+    --card-foreground: 25 20% 15%;
 
-    --popover: 220 25% 8%;
-    --popover-foreground: 210 20% 95%;
+    --popover: 45 25% 96%;
+    --popover-foreground: 25 20% 15%;
 
-    /* Primary - Deep tech blue */
-    --primary: 220 60% 15%;
-    --primary-foreground: 210 20% 95%;
-    --primary-glow: 220 80% 25%;
+    /* Primary - Soft cream */
+    --primary: 45 40% 85%;
+    --primary-foreground: 25 20% 15%;
+    --primary-glow: 45 50% 90%;
 
-    /* Secondary - Lighter tech blue */
-    --secondary: 220 40% 12%;
-    --secondary-foreground: 210 20% 95%;
+    /* Secondary - Light brown */
+    --secondary: 25 30% 80%;
+    --secondary-foreground: 25 20% 15%;
 
-    /* Muted tones */
-    --muted: 220 25% 10%;
-    --muted-foreground: 210 15% 65%;
+    /* Muted tones - Light grays */
+    --muted: 45 15% 92%;
+    --muted-foreground: 25 15% 45%;
 
-    /* Accent - Electric blue */
-    --accent: 200 100% 45%;
-    --accent-foreground: 220 30% 5%;
-    --accent-glow: 200 100% 60%;
+    /* Accent - blue */
+    --accent: 210 59% 50%; /* hsl(210, 59%, 50%) ≈ rgb(53,141,203) */
+    --accent-foreground: 210 59% 15%; /* dark blue for contrast */
+    --accent-glow: 210 59% 70%; /* lighter blue for glow */
 
     /* Status colors */
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 20% 95%;
+    --destructive-foreground: 25 20% 15%;
 
-    --success: 140 70% 45%;
+    --success: 160 70% 60%;
     --warning: 45 90% 60%;
 
     /* Borders and inputs */
-    --border: 220 25% 15%;
-    --input: 220 25% 12%;
-    --ring: 200 100% 45%;
+    --border: 45 20% 88%;
+    --input: 45 15% 90%;
+    --ring: 270 60% 70%;
 
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
@@ -54,9 +54,9 @@
     --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--muted)));
 
     /* Shadows */
-    --shadow-glow: 0 0 40px hsl(var(--accent) / 0.3);
-    --shadow-soft: 0 4px 20px hsl(var(--primary) / 0.2);
-    --shadow-card: 0 8px 32px hsl(var(--primary) / 0.4);
+    --shadow-glow: 0 0 40px hsl(var(--accent) / 0.2);
+    --shadow-soft: 0 4px 20px hsl(var(--primary) / 0.1);
+    --shadow-card: 0 8px 32px hsl(var(--primary) / 0.15);
 
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -82,33 +82,33 @@
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 45 20% 95%;
+    --foreground: 25 25% 20%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 45 15% 92%;
+    --card-foreground: 25 25% 20%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 45 15% 92%;
+    --popover-foreground: 25 25% 20%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 45 35% 80%;
+    --primary-foreground: 25 25% 20%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 25 25% 75%;
+    --secondary-foreground: 25 25% 20%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 45 10% 88%;
+    --muted-foreground: 25 20% 50%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 270 50% 65%;
+    --accent-foreground: 25 25% 20%;
 
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 25 25% 20%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: 45 15% 85%;
+    --input: 45 10% 87%;
+    --ring: 270 50% 65%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -146,6 +146,7 @@
     box-shadow: var(--shadow-glow);
   }
 
+  /* Card glow effects */
   .card-glow {
     box-shadow: var(--shadow-card);
     transition: var(--transition-smooth);
@@ -154,6 +155,11 @@
   .card-glow:hover {
     box-shadow: var(--shadow-glow);
     transform: translateY(-2px);
+  }
+
+  /* Disable hover transforms on buttons with this class */
+  .no-hover-transform:hover {
+    transform: none !important;
   }
 
   /* Gradient backgrounds */
@@ -208,5 +214,99 @@
 
   .animate-pulse-glow {
     animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* Light color utilities */
+  .text-light-purple {
+    color: hsl(270 60% 70%);
+  }
+
+  .bg-light-purple {
+    background-color: hsl(270 60% 70%);
+  }
+
+  .border-light-purple {
+    border-color: hsl(270 60% 70%);
+  }
+
+  .text-mint-green {
+    color: hsl(160 70% 60%);
+  }
+
+  .bg-mint-green {
+    background-color: hsl(160 70% 60%);
+  }
+
+  .border-mint-green {
+    border-color: hsl(160 70% 60%);
+  }
+
+  .text-light-blue {
+    color: hsl(200 70% 65%);
+  }
+
+  .bg-light-blue {
+    background-color: hsl(200 70% 65%);
+  }
+
+  .border-light-blue {
+    border-color: hsl(200 70% 65%);
+  }
+
+  .text-cream {
+    color: hsl(45 40% 85%);
+  }
+
+  .bg-cream {
+    background-color: hsl(45 40% 85%);
+  }
+
+  .border-cream {
+    border-color: hsl(45 40% 85%);
+  }
+
+  /* Hover utilities */
+  .hover\:bg-light-purple:hover {
+    background-color: hsl(270 60% 70%);
+  }
+
+  .hover\:text-light-purple:hover {
+    color: hsl(270 60% 70%);
+  }
+
+  .hover\:bg-mint-green:hover {
+    background-color: hsl(160 70% 60%);
+  }
+
+  .hover\:text-mint-green:hover {
+    color: hsl(160 70% 60%);
+  }
+
+  .hover\:bg-light-blue:hover {
+    background-color: hsl(200 70% 65%);
+  }
+
+  .hover\:text-light-blue:hover {
+    color: hsl(200 70% 65%);
+  }
+
+  /* Light gradient utilities */
+  .bg-gradient-light {
+    background: linear-gradient(135deg, hsl(45 40% 85%), hsl(270 60% 70%));
+  }
+
+  .text-gradient-light {
+    background: linear-gradient(135deg, hsl(270 60% 70%), hsl(270 70% 80%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-gradient-mint {
+    background: linear-gradient(135deg, hsl(160 70% 60%), hsl(160 80% 70%));
+  }
+
+  .bg-gradient-blue {
+    background: linear-gradient(135deg, hsl(200 70% 65%), hsl(200 80% 75%));
   }
 }
