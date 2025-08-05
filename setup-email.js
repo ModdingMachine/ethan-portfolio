@@ -5,15 +5,19 @@
  * This script helps you configure the email integration for your portfolio
  */
 
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 console.log('📧 Email Integration Setup');
 console.log('========================\n');
 
 // Check if .env.local exists
-const envLocalPath = path.join(process.cwd(), '.env.local');
-const envExamplePath = path.join(process.cwd(), 'env.example');
+const envLocalPath = path.join(__dirname, '.env.local');
+const envExamplePath = path.join(__dirname, 'env.example');
 
 if (fs.existsSync(envLocalPath)) {
   console.log('✅ .env.local file already exists');

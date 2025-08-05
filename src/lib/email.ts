@@ -1,4 +1,4 @@
-import emailjs from 'emailjs-com';
+import emailjs from '@emailjs/browser';
 
 // EmailJS configuration
 const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
