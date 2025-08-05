@@ -47,15 +47,30 @@ Your Portfolio Contact Form
 1. Go to "Account" → "API Keys"
 2. Copy your **Public Key** (User ID)
 
-#### Step 5: Configure Environment Variables
-Add these to your `.env.local` file:
+#### Step 5: Configure GitHub Secrets (for deployment)
+Since you're using GitHub Actions for deployment, you need to add these as repository secrets:
+
+1. Go to your GitHub repository
+2. Click "Settings" → "Secrets and variables" → "Actions"
+3. Click "New repository secret" and add these secrets:
+   - `VITE_EMAILJS_SERVICE_ID` = your_service_id_here
+   - `VITE_EMAILJS_TEMPLATE_ID` = your_template_id_here
+   - `VITE_EMAILJS_USER_ID` = your_user_id_here
+
+#### Step 6: Local Development (Optional)
+For local development, you can create a `.env.local` file in your project root:
 
 ```env
 # EmailJS Configuration
 VITE_EMAILJS_SERVICE_ID=your_service_id_here
 VITE_EMAILJS_TEMPLATE_ID=your_template_id_here
 VITE_EMAILJS_USER_ID=your_user_id_here
+
+# Other configurations...
+VITE_OPENAI_API_KEY=your_openai_api_key
 ```
+
+**Note**: The `.env.local` file is only for local development. For production deployment, the GitHub Actions workflow will automatically create the `.env` file from your repository secrets.
 
 ### Option 2: SendGrid (For more control)
 
@@ -70,19 +85,19 @@ SendGrid is a professional email service with more features and higher sending l
 2. Create a new API Key with "Mail Send" permissions
 3. Copy the API key
 
-#### Step 3: Configure Environment Variables
-Add these to your `.env.local` file:
-
-```env
-# SendGrid Configuration
-VITE_SENDGRID_API_KEY=your_api_key_here
-VITE_SENDGRID_FROM_EMAIL=your-verified-email@domain.com
-VITE_SENDGRID_TO_EMAIL=ethan@example.com
-```
+#### Step 3: Configure GitHub Secrets
+Add these to your GitHub repository secrets:
+- `VITE_SENDGRID_API_KEY` = your_api_key_here
+- `VITE_SENDGRID_FROM_EMAIL` = your-verified-email@domain.com
+- `VITE_SENDGRID_TO_EMAIL` = ethan@example.com
 
 ## 🔧 Environment Configuration
 
-Create or update your `.env.local` file with the appropriate configuration:
+### For Production (GitHub Actions)
+Your GitHub Actions workflow automatically creates the `.env` file from repository secrets. No additional configuration needed.
+
+### For Local Development
+Create a `.env.local` file in your project root:
 
 ```env
 # Choose ONE email service (EmailJS or SendGrid)
@@ -111,7 +126,7 @@ VITE_OPENAI_API_KEY=your_openai_api_key
 5. If EmailJS/SendGrid is not configured, it will show a simulation message
 
 ### Production Testing
-1. Deploy your site
+1. Deploy your site via GitHub Actions
 2. Test the contact form with real data
 3. Check your email inbox for the test message
 
@@ -170,13 +185,14 @@ The SendGrid implementation uses a simple HTML template. You can customize the H
 
 ## 🚀 Deployment Notes
 
-### Vercel/Netlify
+### GitHub Actions (Your Current Setup)
+- ✅ Environment variables are automatically injected from GitHub secrets
+- ✅ No additional configuration needed
+- ✅ Secure handling of sensitive data
+
+### Vercel/Netlify (Alternative)
 - Environment variables need to be set in your hosting platform's dashboard
 - Make sure to add all required environment variables
-
-### GitHub Pages
-- Environment variables are embedded in the build
-- Use `.env.production` for production builds
 
 ## 📞 Support
 

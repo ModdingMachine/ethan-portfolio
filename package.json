@@ -9,7 +9,8 @@
     "build:dev": "npx vite build --mode development",
     "lint": "npx eslint .",
     "preview": "npx vite preview",
-    "setup": "node setup.js"
+    "setup": "node setup.js",
+    "setup:email": "node setup-email.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",

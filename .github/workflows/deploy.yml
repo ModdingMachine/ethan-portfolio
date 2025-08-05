@@ -33,6 +33,12 @@ jobs:
       - name: Create .env file
         run: |
           echo "VITE_OPENAI_API_KEY=${{ secrets.VITE_OPENAI_API_KEY }}" > .env
+          echo "VITE_EMAILJS_SERVICE_ID=${{ secrets.VITE_EMAILJS_SERVICE_ID }}" >> .env
+          echo "VITE_EMAILJS_TEMPLATE_ID=${{ secrets.VITE_EMAILJS_TEMPLATE_ID }}" >> .env
+          echo "VITE_EMAILJS_USER_ID=${{ secrets.VITE_EMAILJS_USER_ID }}" >> .env
+          echo "VITE_SENDGRID_API_KEY=${{ secrets.VITE_SENDGRID_API_KEY }}" >> .env
+          echo "VITE_SENDGRID_FROM_EMAIL=${{ secrets.VITE_SENDGRID_FROM_EMAIL }}" >> .env
+          echo "VITE_SENDGRID_TO_EMAIL=${{ secrets.VITE_SENDGRID_TO_EMAIL }}" >> .env
           
       - name: Build
         run: npm run build
