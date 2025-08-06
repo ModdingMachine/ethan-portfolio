@@ -3,85 +3,85 @@ import { Badge } from "@/components/ui/badge";
 
 export const AboutSection = () => {
   return (
-    <section id="about" className="py-20 px-6">
+    <section id="about" className="py-24 px-6 bg-apple-bg-primary">
       <div className="max-w-6xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            About <span className="text-gradient-accent">Me</span>
+        {/* Section Header - Apple-style */}
+        <div className="text-center mb-20">
+          <h2 className="text-apple-headline font-bold mb-8 tracking-tight">
+            About <span className="text-apple-text-primary">Me</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-apple-subtitle text-apple-text-secondary max-w-4xl mx-auto font-light leading-relaxed">
             Passionate technologist with a focus on AI automation and innovative engineering solutions
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* About Content */}
-          <div className="space-y-6">
-            <p className="text-lg leading-relaxed text-muted-foreground">
+        <div className="grid lg:grid-cols-2 space-apple-xl items-start">
+          {/* About Content - Apple-style typography */}
+          <div className="space-apple-lg">
+            <p className="text-apple-body leading-relaxed text-apple-text-secondary font-light">
               I've been passionate about technology since my youth, starting with electronics and 
               transitioning to coding through innovative Minecraft projects. My journey evolved through 
               game design, where I earned top 50 placements in global Ludum Dare competitions.
             </p>
             
-            <p className="text-lg leading-relaxed text-muted-foreground">
+            <p className="text-apple-body leading-relaxed text-apple-text-secondary font-light">
               In 2023, I ventured into Virtual Reality game design, expanding my expertise in 
               three-dimensional mathematics and critical problem solving. As my interests shifted 
               from gaming to real-world applications, I rekindled my passion for electronics and automation.
             </p>
 
-            <p className="text-lg leading-relaxed text-muted-foreground">
+            <p className="text-apple-body leading-relaxed text-apple-text-secondary font-light">
               Currently, I'm automating multiple systems at Revamp Engineering while developing 
               cutting-edge AI automation projects. My work bridges the gap between traditional 
               engineering practices and modern AI-driven solutions.
             </p>
 
-            {/* Current Focus */}
-            <div className="bg-card border border-border rounded-lg p-6 card-glow">
-              <h3 className="text-xl font-semibold mb-4 text-accent">Current Focus</h3>
-              <div className="flex flex-wrap gap-2">
-                <Badge className="bg-accent/20 text-accent border-accent/30">AI Automation</Badge>
-                <Badge className="bg-accent/20 text-accent border-accent/30">AutoCAD Integration</Badge>
-                <Badge className="bg-accent/20 text-accent border-accent/30">Python Scripting</Badge>
-                <Badge className="bg-accent/20 text-accent border-accent/30">IoT Development</Badge>
+            {/* Current Focus - Apple-style card */}
+            <div className="card-apple-subtle">
+              <h3 className="text-apple-title font-semibold mb-6 text-apple-text-primary">Current Focus</h3>
+              <div className="flex flex-wrap space-apple-sm">
+                <Badge className="badge-apple-primary">AI Automation</Badge>
+                <Badge className="badge-apple-primary">AutoCAD Integration</Badge>
+                <Badge className="badge-apple-primary">Python Scripting</Badge>
+                <Badge className="badge-apple-primary">IoT Development</Badge>
               </div>
             </div>
           </div>
 
-          {/* Stats & Highlights */}
-          <div className="space-y-6">
-            <Card className="p-6 card-glow">
-              <h3 className="text-xl font-semibold mb-4">Professional Highlights</h3>
-              <div className="space-y-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-muted-foreground">Years of Experience</span>
-                  <span className="font-semibold text-accent">5+</span>
+          {/* Stats & Highlights - Apple-style cards */}
+          <div className="space-apple-lg">
+            <Card className="card-apple">
+              <h3 className="text-apple-title font-semibold mb-6 text-apple-text-primary">Professional Highlights</h3>
+              <div className="space-apple-md">
+                <div className="flex justify-between items-center py-2 border-b border-apple-border-primary">
+                  <span className="text-apple-text-secondary font-medium">Years of Experience</span>
+                  <span className="font-semibold text-apple-blue text-lg">5+</span>
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-muted-foreground">Game Competitions Won</span>
-                  <span className="font-semibold text-accent">Top 50 Global</span>
+                <div className="flex justify-between items-center py-2 border-b border-apple-border-primary">
+                  <span className="text-apple-text-secondary font-medium">Game Competitions Won</span>
+                  <span className="font-semibold text-apple-blue text-lg">Top 50 Global</span>
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-muted-foreground">Current GPA</span>
-                  <span className="font-semibold text-accent">3.5</span>
+                <div className="flex justify-between items-center py-2 border-b border-apple-border-primary">
+                  <span className="text-apple-text-secondary font-medium">Current GPA</span>
+                  <span className="font-semibold text-apple-blue text-lg">3.5</span>
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-muted-foreground">Automation Scripts Created</span>
-                  <span className="font-semibold text-accent">15+</span>
+                <div className="flex justify-between items-center py-2">
+                  <span className="text-apple-text-secondary font-medium">Automation Scripts Created</span>
+                  <span className="font-semibold text-apple-blue text-lg">15+</span>
                 </div>
               </div>
             </Card>
 
-            <Card className="p-6 card-glow">
-              <h3 className="text-xl font-semibold mb-4">Education</h3>
-              <div className="space-y-3">
+            <Card className="card-apple">
+              <h3 className="text-apple-title font-semibold mb-6 text-apple-text-primary">Education</h3>
+              <div className="space-apple-md">
                 <div>
-                  <h4 className="font-semibold text-foreground">University of Colorado Colorado Springs</h4>
-                  <p className="text-muted-foreground">Bachelor of Science - Electrical Engineering</p>
-                  <p className="text-sm text-accent">2023 - 2027 | GPA: 3.5</p>
+                  <h4 className="font-semibold text-apple-text-primary text-lg">University of Colorado Colorado Springs</h4>
+                  <p className="text-apple-text-secondary font-medium">Bachelor of Science - Electrical Engineering</p>
+                  <p className="text-sm text-apple-blue font-medium mt-1">2023 - 2027 | GPA: 3.5</p>
                 </div>
-                <div className="mt-3">
-                  <p className="text-sm text-muted-foreground">
+                <div className="mt-4 pt-4 border-t border-apple-border-primary">
+                  <p className="text-sm text-apple-text-secondary font-light leading-relaxed">
                     Advanced Coursework in Differential Equations Laplace Transforms, 
                     Circuits I, and Physics III
                   </p>

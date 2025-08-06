@@ -100,51 +100,51 @@ export const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-20 px-6 bg-gradient-subtle">
+    <section id="contact" className="py-24 px-6 bg-apple-bg-primary">
       <div className="max-w-6xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Let's <span className="text-gradient-accent">Connect</span>
+        {/* Section Header - Apple-style */}
+        <div className="text-center mb-20">
+          <h2 className="text-apple-headline font-bold mb-8 tracking-tight">
+            Let's <span className="text-apple-text-primary">Connect</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-apple-subtitle text-apple-text-secondary max-w-4xl mx-auto font-light leading-relaxed">
             Ready to discuss your next automation project or AI integration? Let's talk about how we can work together.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Info & Calendly */}
-          <div className="space-y-8">
+        <div className="grid lg:grid-cols-2 space-apple-xl">
+          {/* Contact Info & Calendly - Apple-style */}
+          <div className="space-apple-lg">
             {/* Contact Information */}
-            <Card className="p-6 card-glow">
-              <h3 className="text-2xl font-semibold mb-6 flex items-center">
-                <Mail className="h-6 w-6 text-accent mr-3" />
+            <Card className="card-apple">
+              <h3 className="text-apple-title font-semibold mb-8 flex items-center text-apple-text-primary">
+                <Mail className="h-6 w-6 text-apple-blue mr-3" />
                 Get in Touch
               </h3>
               
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <MapPin className="h-5 w-5 text-accent" />
-                  <span>Colorado Springs, Colorado</span>
+              <div className="space-apple-md">
+                <div className="flex items-center space-apple-sm">
+                  <MapPin className="h-5 w-5 text-apple-blue" />
+                  <span className="text-apple-text-secondary font-medium">Colorado Springs, Colorado</span>
                 </div>
                 
-                <div className="flex items-center space-x-3">
-                  <Mail className="h-5 w-5 text-accent" />
+                <div className="flex items-center space-apple-sm">
+                  <Mail className="h-5 w-5 text-apple-blue" />
                   <a 
                     href="mailto:coder930@gmail.com" 
-                    className="hover:text-accent transition-smooth"
+                    className="hover:text-apple-blue transition-apple-normal text-apple-text-secondary font-medium"
                   >
                     ethan@example.com
                   </a>
                 </div>
 
-                <div className="flex items-center space-x-3">
-                  <Linkedin className="h-5 w-5 text-accent" />
+                <div className="flex items-center space-apple-sm">
+                  <Linkedin className="h-5 w-5 text-apple-blue" />
                   <a 
                     href="https://www.linkedin.com/in/ethankorr/" 
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-accent transition-smooth"
+                    className="hover:text-apple-blue transition-apple-normal text-apple-text-secondary font-medium"
                   >
                     linkedin.com/in/ethankorr
                   </a>
@@ -154,17 +154,17 @@ export const ContactSection = () => {
             </Card>
 
             {/* Calendly Integration */}
-            <Card className="p-6 card-glow">
-              <h3 className="text-2xl font-semibold mb-4 flex items-center">
-                <Calendar className="h-6 w-6 text-accent mr-3" />
+            <Card className="card-apple">
+              <h3 className="text-apple-title font-semibold mb-6 flex items-center text-apple-text-primary">
+                <Calendar className="h-6 w-6 text-apple-blue mr-3" />
                 Schedule a Meeting
               </h3>
-              <p className="text-muted-foreground mb-6">
+              <p className="text-apple-text-secondary mb-8 font-light leading-relaxed">
                 Book a free 30-minute consultation to discuss your project needs and explore how we can work together.
               </p>
               <Button 
                 onClick={openCalendly}
-                className="w-full bg-gradient-accent hover:opacity-90 transition-smooth glow-accent"
+                className="btn-apple-primary w-full"
                 size="lg"
               >
                 <Calendar className="h-4 w-4 mr-2" />
@@ -173,21 +173,21 @@ export const ContactSection = () => {
             </Card>
           </div>
 
-          {/* Contact Form */}
-          <Card className="p-6 card-glow">
-            <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
+          {/* Contact Form - Apple-style */}
+          <Card className="card-apple">
+            <h3 className="text-apple-title font-semibold mb-8 text-apple-text-primary">Send a Message</h3>
             
             {isSubmitted ? (
-              <div className="text-center py-8">
-                <CheckCircle className="h-16 w-16 text-success mx-auto mb-4" />
-                <h4 className="text-xl font-semibold text-success mb-2">Message Sent!</h4>
-                <p className="text-muted-foreground">
+              <div className="text-center py-12">
+                <CheckCircle className="h-16 w-16 text-apple-blue mx-auto mb-6" />
+                <h4 className="text-apple-title font-semibold text-apple-text-primary mb-3">Message Sent!</h4>
+                <p className="text-apple-text-secondary font-light">
                   Thank you for reaching out. Ethan will get back to you within 24 hours.
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-apple-lg">
+                <div className="space-apple-md">
                   <div>
                     <Input
                       name="name"
@@ -195,16 +195,12 @@ export const ContactSection = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className={`transition-smooth focus:ring-2 focus:ring-accent ${
-                        errors.some(e => e.includes('Name')) ? 'border-red-500 focus:ring-red-500' : ''
+                      className={`input-apple ${
+                        errors.some(e => e.includes('Name')) ? 'border-apple-red focus:ring-apple-red' : ''
                       }`}
                     />
-                    {errors.some(e => e.includes('Name')) && (
-                      <p className="text-red-500 text-sm mt-1">
-                        {errors.find(e => e.includes('Name'))}
-                      </p>
-                    )}
                   </div>
+                  
                   <div>
                     <Input
                       name="email"
@@ -213,46 +209,49 @@ export const ContactSection = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className={`transition-smooth focus:ring-2 focus:ring-accent ${
-                        errors.some(e => e.includes('Email')) ? 'border-red-500 focus:ring-red-500' : ''
+                      className={`input-apple ${
+                        errors.some(e => e.includes('Email')) ? 'border-apple-red focus:ring-apple-red' : ''
                       }`}
                     />
-                    {errors.some(e => e.includes('Email')) && (
-                      <p className="text-red-500 text-sm mt-1">
-                        {errors.find(e => e.includes('Email'))}
-                      </p>
-                    )}
                   </div>
                   
                   <div>
                     <Textarea
                       name="message"
-                      placeholder="Tell me about your project or how I can help..."
+                      placeholder="Your Message"
                       value={formData.message}
                       onChange={handleChange}
                       required
-                      rows={5}
-                      className={`transition-smooth focus:ring-2 focus:ring-accent resize-none ${
-                        errors.some(e => e.includes('Message')) ? 'border-red-500 focus:ring-red-500' : ''
+                      rows={6}
+                      className={`input-apple resize-none ${
+                        errors.some(e => e.includes('Message')) ? 'border-apple-red focus:ring-apple-red' : ''
                       }`}
                     />
-                    {errors.some(e => e.includes('Message')) && (
-                      <p className="text-red-500 text-sm mt-1">
-                        {errors.find(e => e.includes('Message'))}
-                      </p>
-                    )}
                   </div>
                 </div>
+
+                {errors.length > 0 && (
+                  <div className="p-4 rounded-apple-md bg-apple-red-bg border border-apple-red/20">
+                    <ul className="space-apple-sm text-sm text-apple-red">
+                      {errors.map((error, index) => (
+                        <li key={index} className="flex items-start space-apple-sm">
+                          <div className="w-1.5 h-1.5 rounded-full bg-apple-red mt-2 flex-shrink-0"></div>
+                          {error}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
 
                 <Button 
                   type="submit" 
                   disabled={isSubmitting}
-                  className="w-full bg-gradient-accent hover:opacity-90 transition-smooth glow-accent"
+                  className="btn-apple-primary w-full"
                   size="lg"
                 >
                   {isSubmitting ? (
                     <>
-                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-background mr-2" />
+                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
                       Sending...
                     </>
                   ) : (
@@ -265,37 +264,6 @@ export const ContactSection = () => {
               </form>
             )}
           </Card>
-        </div>
-
-        {/* Additional CTA */}
-        <div className="text-center mt-16">
-          <div className="bg-card border border-border rounded-lg p-8 card-glow">
-            <h3 className="text-2xl font-semibold mb-4">
-              Ready to <span className="text-gradient-accent">Automate</span> Your Workflow?
-            </h3>
-            <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              From AI-powered automation to custom IoT solutions, let's transform your ideas into intelligent, 
-              efficient systems that drive real results.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                size="lg" 
-                className="bg-gradient-accent hover:opacity-90 transition-smooth glow-accent"
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                Start Your Project
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="border-accent text-accent hover:bg-accent/10 transition-smooth"
-                onClick={openCalendly}
-              >
-                <Calendar className="h-4 w-4 mr-2" />
-                Free Consultation
-              </Button>
-            </div>
-          </div>
         </div>
       </div>
     </section>

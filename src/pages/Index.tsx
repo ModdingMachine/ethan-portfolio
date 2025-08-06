@@ -8,7 +8,7 @@ import { EmbeddedChatAssistant } from "@/components/EmbeddedChatAssistant";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-apple-bg-primary">
       <HeroSection />
       <AboutSection />
       <SkillsSection />
@@ -17,7 +17,7 @@ const Index = () => {
       <ContactSection />
 
       {/* AI Disclaimer */}
-      <footer className="w-full py-4 text-center text-xs text-muted-foreground">
+      <footer className="w-full py-4 text-center text-xs text-apple-text-tertiary">
         <p>This website was built with the assistance of an AI.</p>
         <p>Copyright © 2025</p>
       </footer>

@@ -178,20 +178,20 @@ export const ProjectsSection = () => {
   };
 
   return (
-    <section id="projects" className="py-20 px-6">
+    <section id="projects" className="py-24 px-6 bg-apple-bg-secondary">
       <div className="max-w-6xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Featured <span className="text-gradient-accent">Projects</span>
+        {/* Section Header - Apple-style */}
+        <div className="text-center mb-20">
+          <h2 className="text-apple-headline font-bold mb-8 tracking-tight">
+            Featured <span className="text-apple-text-primary">Projects</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-apple-subtitle text-apple-text-secondary max-w-4xl mx-auto font-light leading-relaxed">
             Innovative solutions spanning AI automation, IoT development, and engineering workflows
           </p>
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid lg:grid-cols-2 gap-8">
+        {/* Projects Grid - Apple-style */}
+        <div className="grid lg:grid-cols-2 space-apple-lg">
           {projects.map((project, index) => {
             const IconComponent = project.icon;
             const isActive = activeSlideshow === project.title;
@@ -201,30 +201,30 @@ export const ProjectsSection = () => {
             return (
               <div key={project.title} className="relative h-[500px]">
                 {!isActive ? (
-                  /* Front of Card */
-                  <Card className="absolute inset-0 p-6 card-glow group transition-smooth hover:border-accent/50">
+                  /* Front of Card - Apple-style */
+                  <Card className="absolute inset-0 card-apple group hover-apple-lift">
                     {/* Project Header */}
-                    <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-start justify-between mb-6">
                       <div className="flex items-center">
-                        <div className="p-2 rounded-lg bg-accent/10 mr-3 group-hover:bg-accent/20 transition-smooth">
-                          <IconComponent className="h-6 w-6 text-accent" />
+                        <div className="p-3 rounded-apple-lg bg-apple-blue-bg mr-4 group-hover:bg-apple-blue/20 transition-apple-normal">
+                          <IconComponent className="h-6 w-6 text-apple-blue" />
                         </div>
                         <div>
-                          <h3 className="text-xl font-semibold group-hover:text-accent transition-smooth">
+                          <h3 className="text-apple-title font-semibold text-apple-text-primary group-hover:text-apple-blue transition-apple-normal">
                             {project.title}
                           </h3>
-                          <div className="flex items-center gap-2 mt-1">
-                            <Calendar className="h-3 w-3 text-muted-foreground" />
-                            <span className="text-sm text-muted-foreground">{project.date}</span>
+                          <div className="flex items-center space-apple-sm mt-2">
+                            <Calendar className="h-4 w-4 text-apple-text-tertiary" />
+                            <span className="text-sm text-apple-text-tertiary font-medium">{project.date}</span>
                           </div>
                         </div>
                       </div>
                       <Badge 
                         className={`
-                          ${project.status === 'Production' ? 'bg-success/20 text-success border-success/30' : ''}
-                          ${project.status === 'In Development' ? 'bg-warning/20 text-warning border-warning/30' : ''}
-                          ${project.status === 'Seeking Investment' ? 'bg-accent/20 text-accent border-accent/30' : ''}
-                          ${project.status === 'Completed' ? 'bg-blue-500/20 text-blue-400 border-blue-500/30' : ''}
+                          ${project.status === 'Production' ? 'badge-apple-primary' : ''}
+                          ${project.status === 'In Development' ? 'badge-apple-secondary' : ''}
+                          ${project.status === 'Seeking Investment' ? 'badge-apple-primary' : ''}
+                          ${project.status === 'Completed' ? 'badge-apple-secondary' : ''}
                         `}
                       >
                         {project.status}
@@ -232,17 +232,17 @@ export const ProjectsSection = () => {
                     </div>
 
                     {/* Description */}
-                    <p className="text-muted-foreground mb-4 leading-relaxed">
+                    <p className="text-apple-text-secondary mb-6 leading-relaxed font-light">
                       {project.description}
                     </p>
 
-                    {/* Features */}
-                    <div className="mb-4">
-                      <h4 className="text-sm font-semibold mb-2 text-accent">Key Features:</h4>
-                      <ul className="text-sm text-muted-foreground space-y-1">
+                    {/* Key Features */}
+                    <div className="mb-6">
+                      <h4 className="text-sm font-semibold mb-3 text-apple-text-primary">Key Features:</h4>
+                      <ul className="text-sm text-apple-text-secondary space-apple-sm font-light">
                         {project.features.map((feature, i) => (
-                          <li key={i} className="flex items-start">
-                            <span className="text-accent mr-2">•</span>
+                          <li key={i} className="flex items-start space-apple-sm">
+                            <div className="w-1.5 h-1.5 rounded-full bg-apple-blue mt-2 flex-shrink-0"></div>
                             {feature}
                           </li>
                         ))}
@@ -250,12 +250,12 @@ export const ProjectsSection = () => {
                     </div>
 
                     {/* Tech Stack */}
-                    <div className="flex flex-wrap gap-2 mb-4">
+                    <div className="flex flex-wrap space-apple-sm mb-6">
                       {project.tech.map((tech) => (
                         <Badge 
                           key={tech} 
                           variant="secondary" 
-                          className="text-xs bg-muted/30 hover:bg-accent/20 transition-smooth"
+                          className="badge-apple-secondary hover:bg-apple-blue/10 transition-apple-normal"
                         >
                           {tech}
                         </Badge>
@@ -264,11 +264,11 @@ export const ProjectsSection = () => {
 
                     {/* Action Button */}
                     {project.showLearnMore && (
-                      <div className="flex gap-3">
+                      <div className="flex space-apple-sm">
                         <Button 
                           size="sm" 
                           variant="outline"
-                          className="border-accent/50 text-accent hover:bg-accent/10 transition-smooth"
+                          className="btn-apple-secondary"
                           onClick={() => {
                             if (project.showLinkIcon && project.link) {
                               handleExternalLink(project.link);
@@ -284,15 +284,15 @@ export const ProjectsSection = () => {
                     )}
                   </Card>
                 ) : (
-                  /* Slideshow View */
-                  <Card className="absolute inset-0 p-6 card-glow transition-smooth">
+                  /* Slideshow View - Apple-style */
+                  <Card className="absolute inset-0 card-apple">
                     <div className="h-full flex flex-col">
-                      <div className="flex items-center justify-between mb-4">
-                        <h3 className="text-xl font-semibold text-accent">Project Details</h3>
+                      <div className="flex items-center justify-between mb-6">
+                        <h3 className="text-apple-title font-semibold text-apple-text-primary">Project Details</h3>
                         <Button 
                           size="sm" 
                           variant="ghost"
-                          className="text-muted-foreground hover:text-accent"
+                          className="text-apple-text-tertiary hover:text-apple-text-primary"
                           onClick={() => handleCardFlip(project.title)}
                         >
                           <X className="h-4 w-4" />
@@ -302,22 +302,22 @@ export const ProjectsSection = () => {
                       {currentSlide && (
                         <div className="flex-1 flex flex-col">
                           {/* Slideshow Navigation */}
-                          <div className="flex items-center justify-between mb-4">
+                          <div className="flex items-center justify-between mb-6">
                             <Button 
                               size="sm" 
                               variant="ghost"
-                              className="text-muted-foreground hover:text-accent"
+                              className="text-apple-text-tertiary hover:text-apple-text-primary"
                               onClick={() => prevSlide(project.title, project.slideshow.length)}
                             >
                               <ChevronLeft className="h-4 w-4" />
                             </Button>
-                            <span className="text-sm text-muted-foreground">
+                            <span className="text-sm text-apple-text-tertiary font-medium">
                               {currentSlideIndex + 1} / {project.slideshow.length}
                             </span>
                             <Button 
                               size="sm" 
                               variant="ghost"
-                              className="text-muted-foreground hover:text-accent"
+                              className="text-apple-text-tertiary hover:text-apple-text-primary"
                               onClick={() => nextSlide(project.title, project.slideshow.length)}
                             >
                               <ChevronRight className="h-4 w-4" />
@@ -325,25 +325,25 @@ export const ProjectsSection = () => {
                           </div>
 
                           {/* Slide Content */}
-                          <div className="flex-1 bg-muted/20 rounded-lg p-4 mb-4 flex items-center justify-center">
+                          <div className="flex-1 bg-apple-gray-bg rounded-apple-lg p-6 mb-6 flex items-center justify-center">
                             <div className="text-center">
-                              <div className="w-32 h-32 bg-gradient-accent rounded-lg mb-4 mx-auto flex items-center justify-center">
-                                <IconComponent className="h-12 w-12 text-background" />
+                              <div className="w-32 h-32 bg-apple-blue rounded-apple-lg mb-6 mx-auto flex items-center justify-center">
+                                <IconComponent className="h-12 w-12 text-white" />
                               </div>
-                              <h4 className="text-lg font-semibold mb-2">{currentSlide.title}</h4>
-                              <p className="text-sm text-muted-foreground">{currentSlide.description}</p>
+                              <h4 className="text-lg font-semibold mb-3 text-apple-text-primary">{currentSlide.title}</h4>
+                              <p className="text-sm text-apple-text-secondary font-light">{currentSlide.description}</p>
                             </div>
                           </div>
 
                           {/* Slide Indicators */}
-                          <div className="flex justify-center gap-2">
+                          <div className="flex justify-center space-apple-sm">
                             {project.slideshow.map((_, slideIndex) => (
                               <button
                                 key={slideIndex}
                                 className={`w-2 h-2 rounded-full transition-colors ${
                                   slideIndex === currentSlideIndex 
-                                    ? 'bg-accent' 
-                                    : 'bg-muted-foreground/30'
+                                    ? 'bg-apple-blue' 
+                                    : 'bg-apple-gray/30'
                                 }`}
                                 onClick={() => setSlideshowIndex(prev => ({
                                   ...prev,
@@ -362,17 +362,17 @@ export const ProjectsSection = () => {
           })}
         </div>
 
-        {/* AI Assistant Section */}
-        <div className="text-center mt-16">
-          <div className="bg-gradient-to-r from-card/50 to-card/30 rounded-2xl p-8 border border-accent/20">
+        {/* AI Assistant Section - Apple-style */}
+        <div className="text-center mt-20">
+          <div className="card-apple">
             <div className="max-w-2xl mx-auto">
-              <div className="flex items-center justify-center mb-6">
-                <div className="w-12 h-12 bg-gradient-accent rounded-full flex items-center justify-center mr-4">
-                  <Bot className="h-6 w-6 text-background" />
+              <div className="flex items-center justify-center mb-8">
+                <div className="w-12 h-12 bg-apple-blue rounded-full flex items-center justify-center mr-4">
+                  <Bot className="h-6 w-6 text-apple-white" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-gradient-accent">Ask Ethan's AI Assistant</h3>
-                  <p className="text-muted-foreground">Get instant answers about experience, projects, and services</p>
+                  <h3 className="text-2xl font-bold text-apple-dark">Ask Ethan's AI Assistant</h3>
+                  <p className="text-apple-gray font-light">Get instant answers about experience, projects, and services</p>
                 </div>
               </div>
               <EmbeddedChatAssistant />

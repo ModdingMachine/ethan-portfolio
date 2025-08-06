@@ -18,37 +18,37 @@ const skillCategories = [
     title: "AI & Automation",
     icon: Brain,
     skills: ["ChatGPT API", "CrewAI", "AI Workflow Design", "Prompt Engineering", "Machine Learning"],
-    color: "text-accent"
+    color: "text-apple-blue"
   },
   {
     title: "Programming",
     icon: Code,
     skills: ["Unity3D", "JavaScript", "C#", "React", "Python", "AutoLISP"],
-    color: "text-blue-400"
+    color: "text-apple-blue"
   },
   {
     title: "Engineering",
     icon: Cpu,
     skills: ["AutoCAD Electrical", "Circuit Design", "PCB Development", "ESP32", "Arduino"],
-    color: "text-green-400"
+    color: "text-apple-blue"
   },
   {
     title: "IoT & Hardware",
     icon: Smartphone,
     skills: ["Microcontrollers", "Sensor Integration", "3D Design", "Hydroponics", "Solar Systems"],
-    color: "text-purple-400"
+    color: "text-apple-blue"
   },
   {
     title: "Development",
     icon: Globe,
     skills: ["API Development", "Database Design", "Mobile Apps", "Game Development", "VR"],
-    color: "text-orange-400"
+    color: "text-apple-blue"
   },
   {
     title: "Tools & Platforms",
     icon: Wrench,
     skills: ["Cursor AI", "Github", "Excel Macros", "Android SDK", "Version Control"],
-    color: "text-pink-400"
+    color: "text-apple-blue"
   }
 ];
 
@@ -63,36 +63,36 @@ const coreCompetencies = [
 
 export const SkillsSection = () => {
   return (
-    <section id="skills" className="py-20 px-6 bg-gradient-subtle">
+    <section id="skills" className="py-24 px-6 bg-apple-bg-secondary">
       <div className="max-w-6xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Skills & <span className="text-gradient-accent">Expertise</span>
+        {/* Section Header - Apple-style */}
+        <div className="text-center mb-20">
+          <h2 className="text-apple-headline font-bold mb-8 tracking-tight">
+            Skills & <span className="text-apple-text-primary">Expertise</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-apple-subtitle text-apple-text-secondary max-w-4xl mx-auto font-light leading-relaxed">
             A comprehensive toolkit spanning AI, automation, engineering, and modern development
           </p>
         </div>
 
-        {/* Skills Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        {/* Skills Grid - Apple-style */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 space-apple-lg mb-20">
           {skillCategories.map((category, index) => {
             const IconComponent = category.icon;
             return (
-              <Card key={category.title} className="p-6 card-glow group hover:border-accent/50 transition-smooth">
-                <div className="flex items-center mb-4">
-                  <div className={`p-2 rounded-lg bg-accent/10 mr-3 group-hover:bg-accent/20 transition-smooth`}>
+              <Card key={category.title} className="card-apple group hover-apple-lift">
+                <div className="flex items-center mb-6">
+                  <div className="p-3 rounded-apple-lg bg-apple-blue-bg mr-4 group-hover:bg-apple-blue/20 transition-apple-normal">
                     <IconComponent className={`h-6 w-6 ${category.color}`} />
                   </div>
-                  <h3 className="text-lg font-semibold">{category.title}</h3>
+                  <h3 className="text-apple-title font-semibold text-apple-text-primary">{category.title}</h3>
                 </div>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap space-apple-sm">
                   {category.skills.map((skill) => (
                     <Badge 
                       key={skill} 
                       variant="secondary" 
-                      className="text-xs bg-muted/30 hover:bg-accent/20 transition-smooth cursor-default"
+                      className="badge-apple-secondary hover:bg-apple-blue/10 transition-apple-normal cursor-default"
                     >
                       {skill}
                     </Badge>
@@ -103,22 +103,24 @@ export const SkillsSection = () => {
           })}
         </div>
 
-        {/* Core Competencies */}
-        <Card className="p-8 card-glow">
-          <div className="flex items-center mb-6">
-            <Lightbulb className="h-6 w-6 text-accent mr-3" />
-            <h3 className="text-2xl font-semibold">Core Competencies</h3>
+        {/* Core Competencies - Apple-style */}
+        <Card className="card-apple">
+          <div className="flex items-center mb-8">
+            <div className="p-3 rounded-apple-lg bg-apple-blue-bg mr-4">
+              <Lightbulb className="h-6 w-6 text-apple-blue" />
+            </div>
+            <h3 className="text-apple-headline font-semibold text-apple-text-primary">Core Competencies</h3>
           </div>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 space-apple-lg">
             {coreCompetencies.map((competency) => (
-              <div key={competency.name} className="space-y-2">
+              <div key={competency.name} className="space-apple-md">
                 <div className="flex justify-between items-center">
-                  <span className="font-medium">{competency.name}</span>
-                  <span className="text-sm text-accent">{competency.level}%</span>
+                  <span className="font-medium text-apple-text-primary text-lg">{competency.name}</span>
+                  <span className="text-lg font-semibold text-apple-blue">{competency.level}%</span>
                 </div>
-                <div className="w-full bg-muted rounded-full h-2">
+                <div className="w-full bg-apple-gray-bg rounded-full h-3">
                   <div 
-                    className="bg-gradient-accent h-2 rounded-full transition-all duration-1000 ease-out"
+                    className="bg-apple-blue h-3 rounded-full transition-all duration-1000 ease-out"
                     style={{ width: `${competency.level}%` }}
                   />
                 </div>

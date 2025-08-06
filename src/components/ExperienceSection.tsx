@@ -1,160 +1,156 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Building, Calendar, MapPin, Award } from "lucide-react";
+import { Calendar, MapPin, Building2, GraduationCap } from "lucide-react";
 
 const experiences = [
   {
-    company: "Revamp Engineering, Inc.",
-    position: "Substation Protection and Controls Intern",
-    duration: "May 2025 - Present",
+    title: "Automation Engineer",
+    company: "Revamp Engineering",
     location: "Colorado Springs, CO",
-    type: "Full-time",
-    description: "Leading automation initiatives for electrical engineering workflows, developing custom LISP and Python scripts to modernize AutoCAD processes.",
+    period: "May 2025 - Present",
+    description: "Developing custom LISP and Python scripts for AutoCAD automation, creating Excel macros, and implementing AI-driven workflow optimizations.",
     achievements: [
-      "Created automated test switch schedule generation system",
-      "Developed panel nameplate sorter and schedule generator",
-      "Built PinList generator for intelligent component recognition",
-      "Reduced manual workflow time by 60% through automation"
+      "Automated test switch schedule generation",
+      "Developed panel nameplate generators",
+      "Created PinList generators for relay terminals",
+      "Implemented Excel macro automation"
     ],
-    tech: ["LISP", "Python", "AutoCAD Electrical", "Excel Macros"],
-    current: true
+    skills: ["AutoCAD", "LISP", "Python", "Excel", "Automation"],
+    type: "work"
   },
   {
-    company: "LifePonic Solutions",
-    position: "Electrical Engineering Intern",
-    duration: "Mar 2024 - Sep 2024",
+    title: "Student",
+    company: "University of Colorado Colorado Springs",
     location: "Colorado Springs, CO",
-    type: "Internship",
-    description: "Designed and prototyped power distribution and monitoring systems for solar-powered hydroponic tower solutions.",
+    period: "2023 - 2027",
+    description: "Pursuing Bachelor of Science in Electrical Engineering with focus on automation, AI integration, and modern engineering practices.",
     achievements: [
-      "Developed complete DC to AC solar power solution",
-      "Researched and integrated advanced battery management systems",
-      "Created custom sensor solutions for hydroponic monitoring",
-      "Documented comprehensive design procedures and protocols"
+      "Maintaining 3.5 GPA",
+      "Advanced coursework in differential equations",
+      "Studying Laplace transforms and circuit analysis",
+      "Physics III with focus on electromagnetism"
     ],
-    tech: ["Circuit Design", "Solar Systems", "Sensor Integration", "Power Management"],
-    current: false
+    skills: ["Electrical Engineering", "Mathematics", "Physics", "Research"],
+    type: "education"
   },
   {
-    company: "GuardedMind",
-    position: "CEO & Founder",
-    duration: "Jul 2024 - Sep 2024",
-    location: "Colorado Springs, CO",
-    type: "Startup",
-    description: "Founded startup offering parents technology solutions to bridge the gap between digital accountability and healthy relationships.",
+    title: "Game Developer",
+    company: "Independent Projects",
+    location: "Remote",
+    period: "2020 - 2023",
+    description: "Developed innovative Minecraft mods and participated in global game development competitions, achieving top 50 placements in Ludum Dare.",
     achievements: [
-      "Developed comprehensive parental accountability platform",
-      "Created device monitoring and reporting systems",
-      "Built educational resources for healthy tech conversations",
-      "Led product development and business strategy"
+      "Top 50 global placements in Ludum Dare",
+      "Developed complex Minecraft automation systems",
+      "Created 3D game environments and mechanics",
+      "Implemented advanced programming concepts"
     ],
-    tech: ["Mobile Development", "API Design", "User Analytics", "Business Strategy"],
-    current: false
+    skills: ["Unity3D", "C#", "Game Development", "3D Design", "VR"],
+    type: "project"
   }
 ];
 
 export const ExperienceSection = () => {
   return (
-    <section id="experience" className="py-20 px-6">
+    <section id="experience" className="py-24 px-6 bg-apple-bg-primary">
       <div className="max-w-6xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Professional <span className="text-gradient-accent">Experience</span>
+        {/* Section Header - Apple-style */}
+        <div className="text-center mb-20">
+          <h2 className="text-apple-headline font-bold mb-8 tracking-tight">
+            Experience & <span className="text-apple-text-primary">Education</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            A journey through automation, engineering innovation, and entrepreneurial ventures
+          <p className="text-apple-subtitle text-apple-text-secondary max-w-4xl mx-auto font-light leading-relaxed">
+            My professional journey from game development to engineering automation
           </p>
         </div>
 
-        {/* Experience Timeline */}
-        <div className="relative">
-          {/* Timeline Line */}
-          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-accent/30"></div>
+        {/* Experience Timeline - Apple-style */}
+        <div className="space-apple-xl">
+          {experiences.map((experience, index) => (
+            <Card key={index} className="card-apple hover-apple-lift">
+              <div className="flex flex-col lg:flex-row lg:items-start space-apple-lg">
+                {/* Timeline Icon */}
+                <div className="flex items-center lg:items-start space-apple-sm lg:flex-col">
+                  <div className={`p-3 rounded-apple-lg ${
+                    experience.type === 'work' ? 'bg-apple-blue-bg' : 
+                    experience.type === 'education' ? 'bg-apple-green-bg' : 
+                    'bg-apple-purple-bg'
+                  }`}>
+                    {experience.type === 'work' ? (
+                      <Building2 className="h-6 w-6 text-apple-blue" />
+                    ) : experience.type === 'education' ? (
+                      <GraduationCap className="h-6 w-6 text-apple-green" />
+                    ) : (
+                      <Calendar className="h-6 w-6 text-apple-purple" />
+                    )}
+                  </div>
+                  <div className="hidden lg:block w-px h-16 bg-apple-border-primary mx-auto"></div>
+                </div>
 
-          <div className="space-y-12">
-            {experiences.map((exp, index) => (
-              <div key={index} className="relative">
-                {/* Timeline Dot */}
-                <div className={`absolute left-6 w-4 h-4 rounded-full border-2 ${
-                  exp.current 
-                    ? 'bg-accent border-accent shadow-glow' 
-                    : 'bg-background border-accent/50'
-                }`}></div>
-
-                {/* Experience Card */}
-                <div className="ml-16">
-                  <Card className="p-6 card-glow hover:border-accent/50 transition-smooth">
-                    {/* Header */}
-                    <div className="flex flex-wrap items-start justify-between mb-4">
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-3 mb-2">
-                          <Building className="h-5 w-5 text-accent" />
-                          <h3 className="text-xl font-semibold">{exp.company}</h3>
-                          {exp.current && (
-                            <Badge className="bg-success/20 text-success border-success/30">
-                              Current
-                            </Badge>
-                          )}
-                        </div>
-                        <h4 className="text-lg text-accent font-medium mb-2">{exp.position}</h4>
-                        <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-                          <div className="flex items-center gap-1">
-                            <Calendar className="h-4 w-4" />
-                            {exp.duration}
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <MapPin className="h-4 w-4" />
-                            {exp.location}
-                          </div>
-                          <Badge variant="outline" className="text-xs">
-                            {exp.type}
-                          </Badge>
-                        </div>
+                {/* Content */}
+                <div className="flex-1 space-apple-md">
+                  {/* Header */}
+                  <div className="space-apple-sm">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                      <h3 className="text-apple-title font-semibold text-apple-text-primary">
+                        {experience.title}
+                      </h3>
+                      <Badge className={`w-fit ${
+                        experience.type === 'work' ? 'badge-apple-primary' : 
+                        experience.type === 'education' ? 'badge-apple-success' : 
+                        'badge-apple-secondary'
+                      }`}>
+                        {experience.type === 'work' ? 'Work' : 
+                         experience.type === 'education' ? 'Education' : 'Project'}
+                      </Badge>
+                    </div>
+                    
+                    <div className="flex flex-col sm:flex-row sm:items-center space-apple-sm text-apple-text-secondary">
+                      <div className="flex items-center space-apple-sm">
+                        <Building2 className="h-4 w-4" />
+                        <span className="font-medium">{experience.company}</span>
+                      </div>
+                      <div className="flex items-center space-apple-sm">
+                        <MapPin className="h-4 w-4" />
+                        <span>{experience.location}</span>
+                      </div>
+                      <div className="flex items-center space-apple-sm">
+                        <Calendar className="h-4 w-4" />
+                        <span>{experience.period}</span>
                       </div>
                     </div>
+                  </div>
 
-                    {/* Description */}
-                    <p className="text-muted-foreground mb-4 leading-relaxed">
-                      {exp.description}
-                    </p>
+                  {/* Description */}
+                  <p className="text-apple-body text-apple-text-secondary leading-relaxed">
+                    {experience.description}
+                  </p>
 
-                    {/* Key Achievements */}
-                    <div className="mb-4">
-                      <div className="flex items-center gap-2 mb-3">
-                        <Award className="h-4 w-4 text-accent" />
-                        <span className="font-semibold text-sm">Key Achievements</span>
-                      </div>
-                      <ul className="space-y-2">
-                        {exp.achievements.map((achievement, i) => (
-                          <li key={i} className="flex items-start text-sm text-muted-foreground">
-                            <span className="text-accent mr-2 mt-1">•</span>
-                            {achievement}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                  {/* Achievements */}
+                  <div className="space-apple-sm">
+                    <h4 className="text-apple-subtitle font-medium text-apple-text-primary">Key Achievements</h4>
+                    <ul className="space-apple-sm">
+                      {experience.achievements.map((achievement, idx) => (
+                        <li key={idx} className="flex items-start space-apple-sm">
+                          <div className="w-1.5 h-1.5 rounded-full bg-apple-blue mt-2 flex-shrink-0"></div>
+                          <span className="text-apple-body text-apple-text-secondary">{achievement}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
-                    {/* Technologies */}
-                    <div>
-                      <span className="text-sm font-semibold mb-2 block">Technologies Used:</span>
-                      <div className="flex flex-wrap gap-2">
-                        {exp.tech.map((tech) => (
-                          <Badge 
-                            key={tech} 
-                            variant="secondary" 
-                            className="text-xs bg-muted/30 hover:bg-accent/20 transition-smooth"
-                          >
-                            {tech}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-                  </Card>
+                  {/* Skills */}
+                  <div className="flex flex-wrap space-apple-sm">
+                    {experience.skills.map((skill) => (
+                      <Badge key={skill} className="badge-apple-secondary">
+                        {skill}
+                      </Badge>
+                    ))}
+                  </div>
                 </div>
               </div>
-            ))}
-          </div>
+            </Card>
+          ))}
         </div>
       </div>
     </section>
