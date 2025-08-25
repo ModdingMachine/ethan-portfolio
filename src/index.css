@@ -335,15 +335,15 @@
 
   /* Apple System Cards */
   .card-apple {
-    @apply bg-apple-bg-primary border border-apple-border-primary rounded-apple-lg p-6 shadow-apple-sm transition-apple-normal hover:shadow-apple-md;
+    @apply bg-apple-bg-primary border border-apple-border-primary rounded-apple-lg p-8 shadow-apple-sm transition-apple-normal hover:shadow-apple-md hover:border-apple-blue/20;
   }
 
   .card-apple-elevated {
-    @apply bg-apple-bg-primary border-0 rounded-apple-lg p-6 shadow-apple-lg transition-apple-normal hover:shadow-apple-xl transform hover:-translate-y-1;
+    @apply bg-apple-bg-primary border-0 rounded-apple-lg p-8 shadow-apple-lg transition-apple-normal hover:shadow-apple-xl transform hover:-translate-y-1;
   }
 
   .card-apple-subtle {
-    @apply bg-apple-bg-secondary border-0 rounded-apple-lg p-6 transition-apple-normal hover:bg-apple-bg-tertiary;
+    @apply bg-apple-bg-secondary border-0 rounded-apple-lg p-8 transition-apple-normal hover:bg-apple-bg-tertiary;
   }
 
   /* Apple System Badges */

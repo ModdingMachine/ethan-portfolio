@@ -15,7 +15,7 @@ export const AboutSection = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 space-apple-xl items-start">
+        <div className="grid lg:grid-cols-2 gap-6 md:gap-8 items-start">
           {/* About Content - Apple-style typography */}
           <div className="space-apple-lg">
             <p className="text-apple-body leading-relaxed text-apple-text-secondary font-light">

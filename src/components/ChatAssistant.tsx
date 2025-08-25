@@ -213,7 +213,7 @@ export const ChatAssistant = () => {
                 onClick={sendMessage}
                 disabled={isLoading || !inputValue.trim()}
                 size="sm"
-                className="bg-gradient-accent hover:opacity-90 transition-smooth"
+                className="bg-apple-blue hover:bg-apple-blue-light transition-smooth"
               >
                 <Send className="h-4 w-4" />
               </Button>

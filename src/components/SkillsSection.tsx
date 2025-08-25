@@ -76,7 +76,7 @@ export const SkillsSection = () => {
         </div>
 
         {/* Skills Grid - Apple-style */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 space-apple-lg mb-20">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-20">
           {skillCategories.map((category, index) => {
             const IconComponent = category.icon;
             return (
@@ -111,7 +111,7 @@ export const SkillsSection = () => {
             </div>
             <h3 className="text-apple-headline font-semibold text-apple-text-primary">Core Competencies</h3>
           </div>
-          <div className="grid md:grid-cols-2 space-apple-lg">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
             {coreCompetencies.map((competency) => (
               <div key={competency.name} className="space-apple-md">
                 <div className="flex justify-between items-center">

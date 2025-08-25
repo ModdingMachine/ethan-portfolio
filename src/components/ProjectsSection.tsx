@@ -117,7 +117,7 @@ const projects = [
     ]
   },
   {
-    title: "VR & Game Development Portfolio",
+    title: "VR & Game Development",
     description: "Competed in six game design competitions with 78-hour development sprints. Awarded top 50 globally and developed VR experiences for Oculus Quest.",
     tech: ["Unity", "C#", "VR Development", "Game Design"],
     category: "Development",
@@ -191,7 +191,7 @@ export const ProjectsSection = () => {
         </div>
 
         {/* Projects Grid - Apple-style */}
-        <div className="grid lg:grid-cols-2 space-apple-lg">
+        <div className="grid lg:grid-cols-2 gap-6 md:gap-8">
           {projects.map((project, index) => {
             const IconComponent = project.icon;
             const isActive = activeSlideshow === project.title;
@@ -360,24 +360,6 @@ export const ProjectsSection = () => {
               </div>
             );
           })}
-        </div>
-
-        {/* AI Assistant Section - Apple-style */}
-        <div className="text-center mt-20">
-          <div className="card-apple">
-            <div className="max-w-2xl mx-auto">
-              <div className="flex items-center justify-center mb-8">
-                <div className="w-12 h-12 bg-apple-blue rounded-full flex items-center justify-center mr-4">
-                  <Bot className="h-6 w-6 text-apple-white" />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-apple-dark">Ask Ethan's AI Assistant</h3>
-                  <p className="text-apple-gray font-light">Get instant answers about experience, projects, and services</p>
-                </div>
-              </div>
-              <EmbeddedChatAssistant />
-            </div>
-          </div>
         </div>
       </div>
     </section>

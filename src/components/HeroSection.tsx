@@ -11,8 +11,11 @@ export const HeroSection = () => {
   const mousePosition = useRef({ x: 0.5, y: 0.5 });
   const scrollPosition = useRef(0);
 
-  const scrollToAbout = () => {
-    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToAI = () => {
+    const aiSection = document.querySelector('#ai-assistant .card-apple');
+    if (aiSection) {
+      aiSection.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   useEffect(() => {
@@ -215,8 +218,8 @@ export const HeroSection = () => {
 
       {/* Scroll Indicator - Apple-style subtle */}
       <button
-        onClick={scrollToAbout}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-apple-text-secondary hover:text-apple-text-primary transition-apple-normal animate-apple-float"
+        onClick={scrollToAI}
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-apple-text-secondary hover:text-apple-text-primary transition-apple-normal animate-apple-float p-2 rounded-full hover:bg-apple-gray/10"
       >
         <ChevronDown className="h-6 w-6" />
       </button>

@@ -112,7 +112,7 @@ export const ContactSection = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 space-apple-xl">
+        <div className="grid lg:grid-cols-2 gap-6 md:gap-8">
           {/* Contact Info & Calendly - Apple-style */}
           <div className="space-apple-lg">
             {/* Contact Information */}
