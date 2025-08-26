@@ -154,7 +154,7 @@ export const HeroSection = () => {
 
       {/* Interactive particles - Apple-style subtle */}
       <div className="absolute inset-0" id="particles-container">
-        {[...Array(isMobile.current ? 15 : 45)].map((_, i) => (
+        {[...Array(isMobile.current ? 0 : 40)].map((_, i) => (
           <div
             key={i}
             className="particle absolute w-1 h-1 bg-apple-blue rounded-full transition-all duration-2000 ease-out"
