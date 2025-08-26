@@ -83,8 +83,8 @@ export const HeroSection = () => {
         const influence = Math.max(0, 1 - Math.min(distance / 300, 1));
 
         // Mouse influence is stronger when closer
-        const mouseX = dx * speed * influence * 0.005;
-        const mouseY = dy * speed * influence * 0.005;
+        const mouseX = dx * speed * influence * 0.04;
+        const mouseY = dy * speed * influence * 0.04;
         
         // Scroll interaction - very subtle
         const scrollInfluence = Math.sin(scrollPosition.current * 0.003 + phase) * 0.5;
@@ -102,7 +102,7 @@ export const HeroSection = () => {
           Math.pow(mousePosition.current.x - 0.5, 2) + 
           Math.pow(mousePosition.current.y - 0.5, 2)
         );
-        const opacity = 0.1 + (1 - distanceFromMouse) * 0.2 + Math.sin(time + phase) * 0.05;
+        const opacity = 0.1 + (1 - distanceFromMouse) * 2 + Math.sin(time + phase) * 0.05;
         element.style.opacity = Math.max(0.05, Math.min(0.4, opacity)).toString();
       });
       
@@ -154,7 +154,7 @@ export const HeroSection = () => {
 
       {/* Interactive particles - Apple-style subtle */}
       <div className="absolute inset-0" id="particles-container">
-        {[...Array(isMobile.current ? 15 : 30)].map((_, i) => (
+        {[...Array(isMobile.current ? 15 : 45)].map((_, i) => (
           <div
             key={i}
             className="particle absolute w-1 h-1 bg-apple-blue rounded-full transition-all duration-2000 ease-out"
