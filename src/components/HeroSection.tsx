@@ -191,7 +191,7 @@ export const HeroSection = () => {
 
         {/* Tech Stack Pills - Apple-style minimal */}
         <div className="flex flex-wrap justify-center space-apple-md mb-12">
-          {['AI Integration', 'API Development', 'Automation', 'IoT Systems', 'Python', 'AutoCAD'].map((tech) => (
+          {['AI Integration', 'Microelectronics', 'Arduino', 'IoT Systems', 'C#', 'AutoCAD', 'Web Development'].map((tech) => (
             <Badge key={tech} variant="secondary" className="badge-apple-secondary hover:bg-apple-blue/10 transition-apple-normal">
               {tech}
             </Badge>
@@ -219,9 +219,11 @@ export const HeroSection = () => {
       {/* Scroll Indicator - Apple-style subtle */}
       <button
         onClick={scrollToAI}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-apple-text-secondary hover:text-apple-text-primary transition-apple-normal animate-apple-float p-2 rounded-full hover:bg-apple-gray/10"
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-apple-text-secondary hover:text-apple-text-primary transition-all duration-300 ease-out p-4 rounded-full hover:bg-apple-gray/20 active:bg-apple-gray/30 focus:outline-none focus:ring-2 focus:ring-apple-blue/50 focus:ring-offset-2 focus:ring-offset-apple-bg-primary min-w-[48px] min-h-[48px] flex items-center justify-center group z-50 cursor-pointer"
+        aria-label="Scroll to AI Assistant"
+        title="Scroll to AI Assistant"
       >
-        <ChevronDown className="h-6 w-6" />
+        <ChevronDown className="h-6 w-6 group-hover:scale-110 transition-transform duration-300" />
       </button>
     </section>
   );

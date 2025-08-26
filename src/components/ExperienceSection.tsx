@@ -65,7 +65,7 @@ export const ExperienceSection = () => {
         </div>
 
         {/* Experience Timeline - Apple-style */}
-        <div className="space-apple-xl">
+        <div className="space-y-8">
           {experiences.map((experience, index) => (
             <Card key={index} className="card-apple hover-apple-lift">
               <div className="flex flex-col lg:flex-row lg:items-start space-apple-lg">

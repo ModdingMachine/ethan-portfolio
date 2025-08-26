@@ -114,7 +114,7 @@ export const ContactSection = () => {
 
         <div className="grid lg:grid-cols-2 gap-6 md:gap-8">
           {/* Contact Info & Calendly - Apple-style */}
-          <div className="space-apple-lg">
+          <div className="space-y-8">
             {/* Contact Information */}
             <Card className="card-apple">
               <h3 className="text-apple-title font-semibold mb-8 flex items-center text-apple-text-primary">
@@ -186,10 +186,10 @@ export const ContactSection = () => {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-apple-lg">
-                <div className="space-apple-md">
-                  <div>
-                    <Input
+                             <form onSubmit={handleSubmit} className="space-apple-lg">
+                 <div className="space-y-8">
+                   <div>
+                     <Input
                       name="name"
                       placeholder="Your Name"
                       value={formData.name}
@@ -243,12 +243,13 @@ export const ContactSection = () => {
                   </div>
                 )}
 
-                <Button 
-                  type="submit" 
-                  disabled={isSubmitting}
-                  className="btn-apple-primary w-full"
-                  size="lg"
-                >
+                                 <div className="mt-8">
+                   <Button 
+                     type="submit" 
+                     disabled={isSubmitting}
+                     className="btn-apple-primary w-full"
+                     size="lg"
+                   >
                   {isSubmitting ? (
                     <>
                       <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
@@ -259,9 +260,10 @@ export const ContactSection = () => {
                       <Send className="h-4 w-4 mr-2" />
                       Send Message
                     </>
-                  )}
-                </Button>
-              </form>
+                                       )}
+                   </Button>
+                 </div>
+               </form>
             )}
           </Card>
         </div>
