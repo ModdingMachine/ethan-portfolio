@@ -134,8 +134,8 @@ export const ContactSection = () => {
                     href="mailto:coder930@gmail.com" 
                     className="hover:text-apple-blue transition-apple-normal text-apple-text-secondary font-medium"
                   >
-                    ethan@example.com
-                  </a>
+                    coder930@gmail.com
+                 </a>
                 </div>
 
                 <div className="flex items-center space-apple-sm">
