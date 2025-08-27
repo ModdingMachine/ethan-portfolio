@@ -1,0 +1,88 @@
+{
+  "shortcut_name": "Log Activity to Portfolio",
+  "description": "Logs activity data to your portfolio's Supabase database",
+  "version": "1.0",
+  "api_endpoint": "https://ethanorr.me/api/log",
+  "production_endpoint": "https://ethanorr.me/api/log",
+  "required_fields": {
+    "name": "string - The name of the person or activity",
+    "timestamp": "string (optional) - ISO timestamp, defaults to current time",
+    "activity": "string - Description of the activity",
+    "dopamine": "number - Dopamine level (0-10 scale)"
+  },
+  "shortcut_steps": [
+    {
+      "step": 1,
+      "action": "Ask for Input",
+      "parameters": {
+        "prompt": "What's your name?",
+        "variable_name": "name"
+      }
+    },
+    {
+      "step": 2,
+      "action": "Ask for Input",
+      "parameters": {
+        "prompt": "What activity did you do?",
+        "variable_name": "activity"
+      }
+    },
+    {
+      "step": 3,
+      "action": "Ask for Input",
+      "parameters": {
+        "prompt": "Dopamine level (0-10)?",
+        "input_type": "Number",
+        "variable_name": "dopamine"
+      }
+    },
+    {
+      "step": 4,
+      "action": "Get Current Date",
+      "parameters": {
+        "format": "ISO 8601",
+        "variable_name": "timestamp"
+      }
+    },
+    {
+      "step": 5,
+      "action": "Get Contents of URL",
+      "parameters": {
+                 "url": "https://ethanorr.me/api/log",
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "name": "{{name}}",
+          "timestamp": "{{timestamp}}",
+          "activity": "{{activity}}",
+          "dopamine": "{{dopamine}}"
+        }
+      }
+    },
+    {
+      "step": 6,
+      "action": "Show Result",
+      "parameters": {
+        "text": "Activity logged successfully!"
+      }
+    }
+  ],
+  "setup_instructions": [
+    "1. Open Shortcuts app on your iPhone/iPad",
+    "2. Tap the + button to create a new shortcut",
+    "3. Add the steps listed above in order",
+    "4. For the URL in step 5, use your production endpoint when deployed",
+    "5. Test the shortcut by running it",
+    "6. Add the shortcut to your home screen or share sheet for easy access"
+  ],
+  "troubleshooting": {
+    "common_issues": [
+      "Make sure the API server is running",
+      "Check that the URL is correct",
+      "Verify all required fields are provided",
+      "Ensure dopamine is a number between 0-10"
+    ]
+  }
+}
