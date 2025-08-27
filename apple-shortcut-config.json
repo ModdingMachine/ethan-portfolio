@@ -44,21 +44,12 @@
         "variable_name": "timestamp"
       }
     },
-    {
+        {
       "step": 5,
       "action": "Get Contents of URL",
       "parameters": {
-                 "url": "https://ethanorr.me/api/log",
-        "method": "POST",
-        "headers": {
-          "Content-Type": "application/json"
-        },
-        "body": {
-          "name": "{{name}}",
-          "timestamp": "{{timestamp}}",
-          "activity": "{{activity}}",
-          "dopamine": "{{dopamine}}"
-        }
+        "url": "https://ethanorr.me/api/log?name={{name}}&activity={{activity}}&dopamine={{dopamine}}&timestamp={{timestamp}}",
+        "method": "GET"
       }
     },
     {

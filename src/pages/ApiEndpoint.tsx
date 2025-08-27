@@ -1,94 +1,54 @@
 import { useEffect, useState } from 'react'
-import { supabase, LogEntry } from '@/lib/supabase'
+import { logActivity, handleShortcutRequest, LogEntry } from '@/lib/api-client'
 
 const ApiEndpoint = () => {
   const [status, setStatus] = useState<string>('Ready')
   const [lastLog, setLastLog] = useState<LogEntry | null>(null)
 
   useEffect(() => {
-    // Handle POST requests from Apple Shortcuts
-    const handlePostRequest = async (event: MessageEvent) => {
-      if (event.data && event.data.type === 'APPLE_SHORTCUT_LOG') {
-        try {
-          setStatus('Processing...')
-          
-          const logData: LogEntry = {
-            name: event.data.name,
-            timestamp: event.data.timestamp || new Date().toISOString(),
-            activity: event.data.activity,
-            dopamine: event.data.dopamine
-          }
-
-          const { data, error } = await supabase
-            .from('logs')
-            .insert([logData])
-            .select()
-
-          if (error) {
-            console.error('Error inserting log:', error)
-            setStatus(`Error: ${error.message}`)
-          } else {
-            console.log('Log inserted successfully:', data)
-            setLastLog(logData)
-            setStatus('Success!')
-            
-            // Reset status after 3 seconds
-            setTimeout(() => setStatus('Ready'), 3000)
-          }
-        } catch (error) {
-          console.error('Error processing log:', error)
-          setStatus(`Error: ${error instanceof Error ? error.message : 'Unknown error'}`)
+    // Handle Apple Shortcut requests via URL parameters
+    const handleURLRequest = () => {
+      const urlParams = new URLSearchParams(window.location.search)
+      if (urlParams.has('name') && urlParams.has('activity') && urlParams.has('dopamine')) {
+        setStatus('Processing...')
+        
+        const result = handleShortcutRequest()
+        if (result.success && result.data) {
+          setLastLog(result.data as LogEntry)
+          setStatus('Success!')
+          setTimeout(() => setStatus('Ready'), 3000)
+        } else {
+          setStatus(`Error: ${result.error}`)
         }
       }
     }
 
-    // Listen for messages from Apple Shortcuts
-    window.addEventListener('message', handlePostRequest)
-
-    // Also handle direct POST requests (for testing)
-    const handleDirectPost = async (request: Request) => {
-      if (request.method === 'POST') {
-        try {
-          const body = await request.json()
-          const logData: LogEntry = {
-            name: body.name,
-            timestamp: body.timestamp || new Date().toISOString(),
-            activity: body.activity,
-            dopamine: body.dopamine
-          }
-
-          const { data, error } = await supabase
-            .from('logs')
-            .insert([logData])
-            .select()
-
-          if (error) {
-            return new Response(JSON.stringify({ error: error.message }), {
-              status: 400,
-              headers: { 'Content-Type': 'application/json' }
-            })
-          }
-
-          return new Response(JSON.stringify({ success: true, data }), {
-            status: 200,
-            headers: { 'Content-Type': 'application/json' }
-          })
-        } catch (error) {
-          return new Response(JSON.stringify({ error: 'Invalid request' }), {
-            status: 400,
-            headers: { 'Content-Type': 'application/json' }
-          })
+    // Handle direct API calls (for testing)
+    const handleDirectAPI = async (data: any) => {
+      try {
+        setStatus('Processing...')
+        const result = await logActivity(data)
+        
+        if (result.success) {
+          setLastLog(data)
+          setStatus('Success!')
+          setTimeout(() => setStatus('Ready'), 3000)
+        } else {
+          setStatus(`Error: ${result.error}`)
         }
+      } catch (error) {
+        setStatus(`Error: ${error instanceof Error ? error.message : 'Unknown error'}`)
       }
-
-      return new Response('Method not allowed', { status: 405 })
     }
 
-    // Expose the handler globally for service worker or direct access
-    ;(window as any).handleDirectPost = handleDirectPost
+    // Expose the API globally for testing
+    ;(window as any).logActivity = handleDirectAPI
+
+    // Check for URL parameters on load
+    handleURLRequest()
 
     return () => {
-      window.removeEventListener('message', handlePostRequest)
+      // Cleanup if needed
     }
   }, [])
 
@@ -99,7 +59,7 @@ const ApiEndpoint = () => {
         <h1 className="text-2xl font-bold mb-4">API Endpoint</h1>
         <div className="bg-gray-800 p-4 rounded-lg mb-4">
           <p className="text-sm text-gray-300 mb-2">Status: <span className="text-green-400">{status}</span></p>
-          <p className="text-xs text-gray-400">Endpoint: /api/log</p>
+          <p className="text-xs text-gray-400">Endpoint: /api/log (GitHub Pages compatible)</p>
         </div>
         
         {lastLog && (
@@ -115,7 +75,11 @@ const ApiEndpoint = () => {
         )}
 
         <div className="mt-6 text-xs text-gray-400">
-          <p>This endpoint accepts POST requests with JSON data:</p>
+          <p>This endpoint accepts URL parameters for Apple Shortcuts:</p>
+          <pre className="bg-gray-800 p-2 rounded mt-2 text-xs">
+{`https://ethanorr.me/api/log?name=John&activity=Workout&dopamine=8`}
+          </pre>
+          <p className="mt-2">Or direct API calls:</p>
           <pre className="bg-gray-800 p-2 rounded mt-2 text-xs">
 {`{
   "name": "string",

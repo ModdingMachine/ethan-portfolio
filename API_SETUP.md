@@ -53,19 +53,8 @@ curl -X POST http://localhost:3001/api/log \
 - **Variable Name:** `timestamp`
 
 #### Action 5: Get Contents of URL
-- **URL:** `https://ethanorr.me/api/log`
-- **Method:** POST
-- **Headers:** 
-  - `Content-Type: application/json`
-- **Body:**
-```json
-{
-  "name": "{{name}}",
-  "timestamp": "{{timestamp}}",
-  "activity": "{{activity}}",
-  "dopamine": "{{dopamine}}"
-}
-```
+- **URL:** `https://ethanorr.me/api/log?name={{name}}&activity={{activity}}&dopamine={{dopamine}}&timestamp={{timestamp}}`
+- **Method:** GET
 
 #### Action 6: Show Result
 - **Text:** "Activity logged successfully!"
@@ -90,22 +79,16 @@ CREATE TABLE logs (
 
 ## 🌐 Production Deployment
 
-### For Vercel (Recommended)
-1. Deploy your React app to Vercel
-2. The API endpoints will be automatically available at:
-   - `https://ethanorr.me/api/log` - Log activity data
-   - `https://ethanorr.me/api/health` - Health check
-3. The Apple Shortcut is already configured to use your production domain
+### For GitHub Pages (Current Setup)
+1. The API endpoint is now compatible with GitHub Pages
+2. Uses client-side Supabase integration
+3. Apple Shortcut uses URL parameters instead of POST requests
+4. No server-side code required
 
-### For Netlify
-1. Deploy your React app to Netlify
-2. The API endpoints will be available at the same URLs
+### For Other Static Hosts
+1. Deploy your React app to any static host
+2. The API will work the same way using client-side Supabase
 3. No additional configuration needed
-
-### For Custom Server
-1. Deploy the `server.js` file to your server
-2. Set up environment variables if needed
-3. Update the Apple Shortcut URL to point to your server
 
 ## 🔧 Configuration
 
