@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "npx vite",
+    "server": "node server.js",
+    "dev:full": "concurrently \"npm run server\" \"npm run dev\"",
     "build": "npx vite build",
     "build:dev": "npx vite build --mode development",
     "lint": "npx eslint .",
@@ -14,6 +16,8 @@
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
     "@hookform/resolvers": "^3.9.0",
     "@radix-ui/react-accordion": "^1.2.0",
     "@radix-ui/react-alert-dialog": "^1.1.1",
@@ -67,6 +71,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
+    "concurrently": "^8.2.2",
     "@tailwindcss/typography": "^0.5.15",
     "@types/node": "^22.5.5",
     "@types/react": "^18.3.3",
