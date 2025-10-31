@@ -200,29 +200,29 @@ export const ProjectsSection = () => {
             const currentSlide = project.slideshow?.[currentSlideIndex];
 
             return (
-              <div key={project.title} className="relative h-[500px]">
+              <div key={project.title} className="relative min-h-[500px]">
                 {!isActive ? (
                   /* Front of Card - Apple-style */
-                  <Card className="absolute inset-0 card-apple group hover-apple-lift">
+                  <Card className="absolute inset-0 card-apple group hover-apple-lift flex flex-col">
                     {/* Project Header */}
-                    <div className="flex items-start justify-between mb-6">
-                      <div className="flex items-center">
-                        <div className="p-3 rounded-apple-lg bg-apple-blue-bg mr-4 group-hover:bg-apple-blue/20 transition-apple-normal">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex items-center flex-1 min-w-0">
+                        <div className="p-3 rounded-apple-lg bg-apple-blue-bg mr-3 group-hover:bg-apple-blue/20 transition-apple-normal flex-shrink-0">
                           <IconComponent className="h-6 w-6 text-apple-blue" />
                         </div>
-                        <div>
-                          <h3 className="text-apple-title font-semibold text-apple-text-primary group-hover:text-apple-blue transition-apple-normal">
+                        <div className="min-w-0 flex-1">
+                          <h3 className="text-base font-semibold text-apple-text-primary group-hover:text-apple-blue transition-apple-normal line-clamp-2">
                             {project.title}
                           </h3>
-                          <div className="flex items-center space-apple-sm mt-2">
-                            <Calendar className="h-4 w-4 text-apple-text-tertiary" />
-                            <span className="text-sm text-apple-text-tertiary font-medium">{project.date}</span>
+                          <div className="flex items-center space-apple-sm mt-1">
+                            <Calendar className="h-4 w-4 text-apple-text-tertiary flex-shrink-0" />
+                            <span className="text-xs text-apple-text-tertiary font-medium">{project.date}</span>
                           </div>
                         </div>
                       </div>
                       <Badge 
                         className={`
-                          whitespace-nowrap
+                          whitespace-nowrap flex-shrink-0 ml-2
                           ${project.status === 'Production' ? 'badge-apple-primary' : ''}
                           ${project.status === 'In Development' ? 'badge-apple-secondary' : ''}
                           ${project.status === 'Seeking Investment' ? 'badge-apple-primary' : ''}
@@ -233,44 +233,47 @@ export const ProjectsSection = () => {
                       </Badge>
                     </div>
 
-                    {/* Description */}
-                    <p className="text-apple-text-secondary mb-6 leading-relaxed font-light">
-                      {project.description}
-                    </p>
+                    {/* Scrollable Content Area */}
+                    <div className="flex-1 overflow-y-auto min-h-0 mb-4">
+                      {/* Description */}
+                      <p className="text-apple-text-secondary mb-4 leading-relaxed font-light text-sm">
+                        {project.description}
+                      </p>
 
-                    {/* Key Features */}
-                    <div className="mb-6">
-                      <h4 className="text-sm font-semibold mb-3 text-apple-text-primary">Key Features:</h4>
-                      <ul className="text-sm text-apple-text-secondary space-apple-sm font-light">
-                        {project.features.map((feature, i) => (
-                          <li key={i} className="flex items-start space-apple-sm">
-                            <div className="w-1.5 h-1.5 rounded-full bg-apple-blue mt-2 flex-shrink-0"></div>
-                            {feature}
-                          </li>
+                      {/* Key Features */}
+                      <div className="mb-4">
+                        <h4 className="text-sm font-semibold mb-2 text-apple-text-primary">Key Features:</h4>
+                        <ul className="text-sm text-apple-text-secondary space-apple-sm font-light">
+                          {project.features.map((feature, i) => (
+                            <li key={i} className="flex items-start space-apple-sm">
+                              <div className="w-1.5 h-1.5 rounded-full bg-apple-blue mt-2 flex-shrink-0"></div>
+                              {feature}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Tech Stack */}
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {project.tech.map((tech) => (
+                          <Badge 
+                            key={tech} 
+                            variant="secondary" 
+                            className="badge-apple-secondary hover:bg-apple-blue/10 transition-apple-normal"
+                          >
+                            {tech}
+                          </Badge>
                         ))}
-                      </ul>
+                      </div>
                     </div>
 
-                    {/* Tech Stack */}
-                    <div className="flex flex-wrap space-apple-sm mb-6">
-                      {project.tech.map((tech) => (
-                        <Badge 
-                          key={tech} 
-                          variant="secondary" 
-                          className="badge-apple-secondary hover:bg-apple-blue/10 transition-apple-normal"
-                        >
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-
-                    {/* Action Button */}
+                    {/* Action Button - Fixed at bottom */}
                     {project.showLearnMore && (
-                      <div className="flex space-apple-sm">
+                      <div className="mt-auto pt-2 border-t border-apple-border-primary">
                         <Button 
                           size="sm" 
                           variant="outline"
-                          className="btn-apple-secondary"
+                          className="btn-apple-secondary w-full"
                           onClick={() => {
                             if (project.showLinkIcon && project.link) {
                               handleExternalLink(project.link);
