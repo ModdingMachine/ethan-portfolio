@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -15,17 +15,40 @@ interface Message {
 }
 
 export const EmbeddedChatAssistant = () => {
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: '1',
-      text: "Hi! I'm Ethan in AI form... I can help answer questions about his background, experience, and services. What would you like to know?",
-      isUser: false,
-      timestamp: new Date()
-    }
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [apiAvailable, setApiAvailable] = useState<boolean | null>(null);
   const { toast } = useToast();
+
+  // Check API availability on mount
+  useEffect(() => {
+    const checkAPI = async () => {
+      try {
+        const response = await sendChatMessage('ping');
+        setApiAvailable(true);
+        setMessages([
+          {
+            id: '1',
+            text: "I can help answer more in depth questions about Ethan and show off what he can do!",
+            isUser: false,
+            timestamp: new Date()
+          }
+        ]);
+      } catch (error) {
+        setApiAvailable(false);
+        setMessages([
+          {
+            id: '1',
+            text: "⚠️ AI Assistant is currently unavailable. The API key may be disabled or misconfigured. Please contact the site administrator.",
+            isUser: false,
+            timestamp: new Date()
+          }
+        ]);
+      }
+    };
+    checkAPI();
+  }, []);
 
   const sendMessage = async () => {
     if (!inputValue.trim() || isLoading) return;
@@ -154,9 +177,9 @@ export const EmbeddedChatAssistant = () => {
           />
           <Button
             onClick={sendMessage}
-            disabled={isLoading || !inputValue.trim()}
+            disabled={isLoading || !inputValue.trim() || apiAvailable === false}
             size="sm"
-            className="bg-apple-blue hover:bg-apple-blue-light transition-smooth px-2 md:px-3"
+            className="bg-apple-blue hover:bg-apple-blue-light transition-smooth px-2 md:px-3 disabled:opacity-50"
           >
             <Send className="h-3 w-3 md:h-4 md:w-4" />
           </Button>

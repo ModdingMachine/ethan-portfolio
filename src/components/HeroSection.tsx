@@ -169,11 +169,6 @@ export const HeroSection = () => {
 
       {/* Content - Apple-style typography */}
       <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
-        {/* Status Badge - Apple-style */}
-        <Badge variant="outline" className="mb-8 border-apple-border-primary text-apple-text-secondary hover:bg-apple-gray/10 transition-apple-normal font-medium">
-          Available for Freelance & Consulting
-        </Badge>
-
         {/* Main Heading - Apple-style large typography */}
         <h1 className="text-apple-display font-bold mb-8 leading-tight tracking-tight">
           <span className="text-apple-text-primary">Ethan Orr</span>

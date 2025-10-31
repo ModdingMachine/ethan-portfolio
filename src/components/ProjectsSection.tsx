@@ -7,21 +7,22 @@ import { useState } from "react";
 
 const projects = [
   {
-    title: "AI Lecture Transcription System",
-    description: "Multi-agent AI system using CrewAI to enhance educational content. Transforms recorded lectures into enriched, comprehensive learning materials with automated research and synthesis.",
-    tech: ["CrewAI", "AI Agents", "Python", "Chain of Thought"],
+    title: "LecturnAI - Neural Network Note Taking",
+    description: "Obsidian-inspired note taking app that maps AI conversations to a 3D neural network visualization. Enables follow-up conversations with context awareness for an enhanced learning experience.",
+    tech: ["AI", "3D Visualization", "Neural Networks", "React"],
     category: "AI",
     icon: Bot,
     date: "Jul 2025",
     features: [
-      "Summarizer agent for high-level extraction",
-      "Research agent with code/math verification",
-      "Content enhancer with examples & analogies",
-      "Audio synthesis for spoken delivery"
+      "3D neural network conversation mapping",
+      "Context-aware follow-up conversations",
+      "Obsidian-inspired knowledge management",
+      "Enhanced AI learning experience"
     ],
     status: "In Development",
-    showLearnMore: false,
-    showLinkIcon: false,
+    showLearnMore: true,
+    showLinkIcon: true,
+    link: "https://lecturnai.netlify.app",
     slideshow: [
       { title: "Multi-Agent Architecture", description: "CrewAI orchestrates specialized agents for content processing", image: "/api/placeholder/400/300" },
       { title: "Research Integration", description: "Automated verification of code and mathematical concepts", image: "/api/placeholder/400/300" },
@@ -221,6 +222,7 @@ export const ProjectsSection = () => {
                       </div>
                       <Badge 
                         className={`
+                          whitespace-nowrap
                           ${project.status === 'Production' ? 'badge-apple-primary' : ''}
                           ${project.status === 'In Development' ? 'badge-apple-secondary' : ''}
                           ${project.status === 'Seeking Investment' ? 'badge-apple-primary' : ''}

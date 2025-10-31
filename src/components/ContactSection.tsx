@@ -108,7 +108,7 @@ export const ContactSection = () => {
             Let's <span className="text-apple-text-primary">Connect</span>
           </h2>
           <p className="text-apple-subtitle text-apple-text-secondary max-w-4xl mx-auto font-light leading-relaxed">
-            Ready to discuss your next automation project or AI integration? Let's talk about how we can work together.
+            Interested in learning more about my work or exploring potential collaboration? Feel free to reach out.
           </p>
         </div>
 
@@ -164,8 +164,9 @@ export const ContactSection = () => {
               </p>
               <Button 
                 onClick={openCalendly}
-                className="btn-apple-primary w-full"
+                className="btn-apple-primary w-full opacity-50 cursor-not-allowed"
                 size="lg"
+                disabled
               >
                 <Calendar className="h-4 w-4 mr-2" />
                 Book a Call
